@@ -1,0 +1,76 @@
+_wandb:
+    value:
+        cli_version: 0.22.3
+        e:
+            ok29as9hqqpmbzreyibt93rfccpjn4c2:
+                codePath: train.py
+                codePathLocal: train.py
+                cpu_count: 4
+                cpu_count_logical: 4
+                cudaVersion: "12.8"
+                disk:
+                    /:
+                        total: "63090503680"
+                        used: "38171766784"
+                email: khashayargatmiry@gmail.com
+                executable: /usr/local/linux/miniforge-3.13/bin/python
+                gpu: NVIDIA GeForce GTX TITAN X
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Maxwell
+                      cudaCores: 3072
+                      memoryTotal: "12884901888"
+                      name: NVIDIA GeForce GTX TITAN X
+                      uuid: GPU-a0083014-1eb7-14d6-6570-7273d7b1e407
+                host: merry
+                memory:
+                    total: "16656240640"
+                os: Linux-6.8.0-55-generic-x86_64-with-glibc2.39
+                program: /accounts/projects/peter/gatmiry/distributional-CoT/train.py
+                python: CPython 3.13.2
+                root: /accounts/projects/peter/gatmiry/distributional-CoT
+                slurm:
+                    account: site
+                    job_id: "2624904"
+                startedAt: "2025-11-23T01:42:58.872144Z"
+                writerId: ok29as9hqqpmbzreyibt93rfccpjn4c2
+        m: []
+        python_version: 3.13.2
+        t:
+            "1":
+                - 50
+            "2":
+                - 1
+                - 50
+            "3":
+                - 13
+                - 15
+                - 16
+            "4": 3.13.2
+            "5": 0.22.3
+            "12": 0.22.3
+            "13": linux-x86_64
+debug:
+    value: false
+trainer:
+    value:
+        _target_: test_composite_function.test_composite_function
+        cfg:
+            batch_size: 1
+            dropout: 0.1
+            flipping_subsets: []
+            function_dim: 3
+            learning_rate: 0.0001
+            max_steps: 10000
+            n_embd: 64
+            n_heads: 1
+            n_layers: 2
+            target_function_string: 1.0x0x1 + 1.0x1x2
+            vocab_size: 3
+wandb_config:
+    value:
+        name: composite-function-test
+        notes: Testing composite function with CoT
+        project: distributional-cot
+        tags:
+            - train

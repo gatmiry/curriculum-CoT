@@ -1,0 +1,11 @@
+{"time":"2025-11-22T15:16:59.3007569-08:00","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2025-11-22T15:16:59.515208476-08:00","level":"INFO","msg":"stream: created new stream","id":"z4jmbrlo"}
+{"time":"2025-11-22T15:16:59.515410622-08:00","level":"INFO","msg":"handler: started","stream_id":"z4jmbrlo"}
+{"time":"2025-11-22T15:16:59.518501299-08:00","level":"INFO","msg":"stream: started","id":"z4jmbrlo"}
+{"time":"2025-11-22T15:16:59.518647739-08:00","level":"INFO","msg":"writer: started","stream_id":"z4jmbrlo"}
+{"time":"2025-11-22T15:16:59.518890835-08:00","level":"INFO","msg":"sender: started","stream_id":"z4jmbrlo"}
+{"time":"2025-11-22T15:19:24.133969352-08:00","level":"INFO","msg":"stream: closing","id":"z4jmbrlo"}
+{"time":"2025-11-22T15:19:24.506539636-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-22T15:19:24.655439007-08:00","level":"INFO","msg":"handler: closed","stream_id":"z4jmbrlo"}
+{"time":"2025-11-22T15:19:24.656559738-08:00","level":"INFO","msg":"sender: closed","stream_id":"z4jmbrlo"}
+{"time":"2025-11-22T15:19:24.65657376-08:00","level":"INFO","msg":"stream: closed","id":"z4jmbrlo"}

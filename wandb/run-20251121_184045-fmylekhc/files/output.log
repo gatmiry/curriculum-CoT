@@ -1,0 +1,14 @@
+================================================================================
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 47, in main
+    train.fit()
+    ~~~~~~~~~^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/test_composite_function.py", line 40, in fit
+    model = GPT(config)
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/model.py", line 76, in __init__
+    self.linear_head = nn.Linear(config.n_embd, bias=False)
+                       ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Linear.__init__() missing 1 required positional argument: 'out_features'
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

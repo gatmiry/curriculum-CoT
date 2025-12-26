@@ -1,0 +1,185 @@
+Step 0 Loss: 0.9916300773620605 Final Loss: 0.9191470742225647
+Step 100 Loss: 0.48266416788101196 Final Loss: 0.09852153062820435
+Step 200 Loss: 0.7527307271957397 Final Loss: 0.1279541403055191
+Step 300 Loss: 0.7044705748558044 Final Loss: 0.010021449998021126
+Step 400 Loss: 0.5970643758773804 Final Loss: 0.0009337762021459639
+Step 500 Loss: 0.36539578437805176 Final Loss: 0.013260340318083763
+Step 600 Loss: 0.5588815808296204 Final Loss: 0.005086278542876244
+Step 700 Loss: 0.43662363290786743 Final Loss: 9.933928959071636e-05
+Step 800 Loss: 0.5572073459625244 Final Loss: 0.0012211704161018133
+Step 900 Loss: 0.4376668632030487 Final Loss: 0.0006831486825831234
+Step 1000 Loss: 0.43659019470214844 Final Loss: 0.0003978991589974612
+Step 1100 Loss: 0.5176771879196167 Final Loss: 0.0032413580920547247
+Step 1200 Loss: 0.3305210769176483 Final Loss: 0.001853645546361804
+Step 1300 Loss: 0.11222518235445023 Final Loss: 1.9659955796669237e-06
+Step 1400 Loss: 0.3439793884754181 Final Loss: 0.011060919612646103
+Step 1500 Loss: 0.45580410957336426 Final Loss: 0.0036371243186295033
+Step 1600 Loss: 0.36687949299812317 Final Loss: 0.009033206850290298
+Step 1700 Loss: 0.3828114867210388 Final Loss: 0.0002456106012687087
+Step 1800 Loss: 0.31726863980293274 Final Loss: 0.012107741087675095
+Step 1900 Loss: 0.2741071581840515 Final Loss: 0.001001549419015646
+Step 2000 Loss: 0.40120381116867065 Final Loss: 0.0003925219352822751
+Step 2100 Loss: 0.39771807193756104 Final Loss: 0.011740867048501968
+Step 2200 Loss: 0.6266068816184998 Final Loss: 0.033640600740909576
+Step 2300 Loss: 0.3893522024154663 Final Loss: 0.002018676372244954
+Step 2400 Loss: 0.35110747814178467 Final Loss: 0.0004428531101439148
+Step 2500 Loss: 0.2410965859889984 Final Loss: 0.0001680562854744494
+Step 2600 Loss: 0.30786895751953125 Final Loss: 0.005058040842413902
+Step 2700 Loss: 0.34329235553741455 Final Loss: 0.00502967881038785
+Step 2800 Loss: 0.5348128080368042 Final Loss: 0.0028666199650615454
+Step 2900 Loss: 0.3441880941390991 Final Loss: 0.021169817075133324
+Step 3000 Loss: 0.275734007358551 Final Loss: 2.064161526504904e-05
+Step 3100 Loss: 0.2944682538509369 Final Loss: 0.012697901576757431
+Step 3200 Loss: 0.3209361433982849 Final Loss: 3.532633854774758e-05
+Step 3300 Loss: 0.24829596281051636 Final Loss: 0.00026929177693091333
+Step 3400 Loss: 0.31212666630744934 Final Loss: 0.003842215985059738
+Step 3500 Loss: 0.37434881925582886 Final Loss: 1.7151607607956976e-05
+Step 3600 Loss: 0.2538807988166809 Final Loss: 0.008352875709533691
+Step 3700 Loss: 0.1939792037010193 Final Loss: 0.00047324286424554884
+Step 3800 Loss: 0.1952606737613678 Final Loss: 0.008697259239852428
+Step 3900 Loss: 0.1994975507259369 Final Loss: 0.0009585119551047683
+Step 4000 Loss: 0.22516033053398132 Final Loss: 0.005210989620536566
+Step 4100 Loss: 0.32099059224128723 Final Loss: 0.00040618848288431764
+Step 4200 Loss: 0.2598869204521179 Final Loss: 0.00029014679603278637
+Step 4300 Loss: 0.2774178385734558 Final Loss: 0.004269040655344725
+Step 4400 Loss: 0.16526073217391968 Final Loss: 0.0016722438158467412
+Step 4500 Loss: 0.24783027172088623 Final Loss: 0.00024659052724018693
+Step 4600 Loss: 0.2682999074459076 Final Loss: 0.0008175291586667299
+Step 4700 Loss: 0.22801148891448975 Final Loss: 6.919618317624554e-05
+Step 4800 Loss: 0.09464795887470245 Final Loss: 2.6685647753765807e-05
+Step 4900 Loss: 0.16426114737987518 Final Loss: 9.390161721967161e-05
+Step 5000 Loss: 0.31841081380844116 Final Loss: 0.0013958194758743048
+Step 5100 Loss: 0.1524924635887146 Final Loss: 0.006780798546969891
+Step 5200 Loss: 0.3034016191959381 Final Loss: 0.00039557457785122097
+Step 5300 Loss: 0.18242289125919342 Final Loss: 0.00042076598037965596
+Step 5400 Loss: 0.13453729450702667 Final Loss: 0.00012360847904346883
+Step 5500 Loss: 0.12862540781497955 Final Loss: 0.0009627091931179166
+Step 5600 Loss: 0.058562591671943665 Final Loss: 0.0010894795414060354
+Step 5700 Loss: 0.33418214321136475 Final Loss: 0.00034987740218639374
+Step 5800 Loss: 0.07625686377286911 Final Loss: 0.006109738256782293
+Step 5900 Loss: 0.1407107263803482 Final Loss: 0.0007833658019080758
+Step 6000 Loss: 0.13569405674934387 Final Loss: 0.023964127525687218
+Step 6100 Loss: 0.12333005666732788 Final Loss: 0.0013369690859690309
+Step 6200 Loss: 0.1156136617064476 Final Loss: 0.00018936303968075663
+Step 6300 Loss: 0.038058776408433914 Final Loss: 0.0026463924441486597
+Step 6400 Loss: 0.07608271390199661 Final Loss: 0.006100349593907595
+Step 6500 Loss: 0.0247553288936615 Final Loss: 0.001869373838417232
+Step 6600 Loss: 0.041985802352428436 Final Loss: 0.002655771328136325
+Step 6700 Loss: 0.1523132622241974 Final Loss: 0.00027213580324314535
+Step 6800 Loss: 0.09892188757658005 Final Loss: 0.002408052096143365
+Step 6900 Loss: 0.07484673708677292 Final Loss: 6.309557647909969e-05
+Step 7000 Loss: 0.04068438708782196 Final Loss: 0.0008793753804638982
+Step 7100 Loss: 0.07965853065252304 Final Loss: 0.0012777153169736266
+Step 7200 Loss: 0.052979566156864166 Final Loss: 0.00010228242899756879
+Step 7300 Loss: 0.150264710187912 Final Loss: 0.0001941269147209823
+Step 7400 Loss: 0.05473240092396736 Final Loss: 0.0019788809586316347
+Step 7500 Loss: 0.1647377610206604 Final Loss: 3.3129028452094644e-05
+Step 7600 Loss: 0.11227947473526001 Final Loss: 0.0004211817868053913
+Step 7700 Loss: 0.01212382037192583 Final Loss: 0.002587532624602318
+Step 7800 Loss: 0.05024589225649834 Final Loss: 0.00047643797006458044
+Step 7900 Loss: 0.10692419856786728 Final Loss: 0.0007799928425811231
+Step 8000 Loss: 0.032445065677165985 Final Loss: 0.00028133305022493005
+Step 8100 Loss: 0.18263676762580872 Final Loss: 0.0009265847038477659
+Step 8200 Loss: 0.014889323152601719 Final Loss: 0.00015768498997204006
+Step 8300 Loss: 0.17564508318901062 Final Loss: 0.0013370737433433533
+Step 8400 Loss: 0.21727968752384186 Final Loss: 0.0009622136130928993
+Step 8500 Loss: 0.08100058883428574 Final Loss: 7.805859058862552e-05
+Step 8600 Loss: 0.07679761946201324 Final Loss: 7.139354238461237e-06
+Step 8700 Loss: 0.0704064816236496 Final Loss: 5.7420897064730525e-05
+Step 8800 Loss: 0.011923916637897491 Final Loss: 0.0016424269415438175
+Step 8900 Loss: 0.003077504690736532 Final Loss: 0.0014421424129977822
+Step 9000 Loss: 0.059729013592004776 Final Loss: 0.0012793010100722313
+Step 9100 Loss: 0.018688393756747246 Final Loss: 0.0006812929641455412
+Step 9200 Loss: 0.021545231342315674 Final Loss: 0.002017128746956587
+Step 9300 Loss: 0.039775606244802475 Final Loss: 0.0003292440960649401
+Step 9400 Loss: 0.003473360324278474 Final Loss: 0.00028434029081836343
+Step 9500 Loss: 0.0024589633103460073 Final Loss: 0.0014854974579066038
+Step 9600 Loss: 0.009367248974740505 Final Loss: 0.0003039859584532678
+Step 9700 Loss: 0.003082101698964834 Final Loss: 0.0001671318750595674
+Traceback (most recent call last):
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 51, in <module>
+    main()
+    ~~~~^^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+    ~~~~~~~~~~^
+        args=args,
+        ^^^^^^^^^^
+    ...<3 lines>...
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+    ~~~~~~~~^
+        run=args.run,
+        ^^^^^^^^^^^^^
+    ...<5 lines>...
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+    ~~~~~~~~~~~~~~^
+        lambda: hydra.run(
+        ^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        )
+        ^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+            ~~~~~~~~~^
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        task_function=task_function,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+        hydra_context=HydraContext(
+    ...<6 lines>...
+        configure_logging=with_log_configuration,
+    )
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+                       ~~~~~~~~~~~~~^^^^^^^^^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 47, in main
+    train.fit()
+    ~~~~~~~~~^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/test_composite_function.py", line 85, in fit
+    loss.backward()
+    ~~~~~~~~~~~~~^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        self, gradient, retain_graph, create_graph, inputs=inputs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+    ~~~~~~~~~~~~~~~~~~~~^
+        tensors,
+        ^^^^^^^^
+    ...<5 lines>...
+        accumulate_grad=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        t_outputs, *args, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )  # Calls into the C++ engine to run the backward pass
+    ^
+KeyboardInterrupt

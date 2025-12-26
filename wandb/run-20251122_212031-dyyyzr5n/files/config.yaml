@@ -1,0 +1,111 @@
+_wandb:
+    value:
+        cli_version: 0.22.3
+        e:
+            jq01nugzzlevsyh15dmu3f5xf9v5lct3:
+                codePath: train.py
+                codePathLocal: train.py
+                cpu_count: 24
+                cpu_count_logical: 48
+                cudaVersion: "12.8"
+                disk:
+                    /:
+                        total: "63090503680"
+                        used: "38232424448"
+                email: khashayargatmiry@gmail.com
+                executable: /usr/local/linux/miniforge-3.13/bin/python
+                gpu: NVIDIA GeForce RTX 2080 Ti
+                gpu_count: 8
+                gpu_nvidia:
+                    - architecture: Turing
+                      cudaCores: 4352
+                      memoryTotal: "11811160064"
+                      name: NVIDIA GeForce RTX 2080 Ti
+                      uuid: GPU-6c4d9a3b-dab0-7c74-211d-76f5f03de334
+                    - architecture: Turing
+                      cudaCores: 4352
+                      memoryTotal: "11811160064"
+                      name: NVIDIA GeForce RTX 2080 Ti
+                      uuid: GPU-178625b1-95d0-9267-c030-38a45f8de573
+                    - architecture: Turing
+                      cudaCores: 4352
+                      memoryTotal: "11811160064"
+                      name: NVIDIA GeForce RTX 2080 Ti
+                      uuid: GPU-649bc25a-1e27-b867-41b3-16140fca0063
+                    - architecture: Turing
+                      cudaCores: 4352
+                      memoryTotal: "11811160064"
+                      name: NVIDIA GeForce RTX 2080 Ti
+                      uuid: GPU-18fb41e2-f5f8-60be-8b58-b63ec2ac167f
+                    - architecture: Turing
+                      cudaCores: 4352
+                      memoryTotal: "11811160064"
+                      name: NVIDIA GeForce RTX 2080 Ti
+                      uuid: GPU-a4f24d96-9b42-29e0-7586-a9ecb627f7d8
+                    - architecture: Turing
+                      cudaCores: 4352
+                      memoryTotal: "11811160064"
+                      name: NVIDIA GeForce RTX 2080 Ti
+                      uuid: GPU-59ded856-d944-7eaf-7a66-ef67fa22ed65
+                    - architecture: Turing
+                      cudaCores: 4352
+                      memoryTotal: "11811160064"
+                      name: NVIDIA GeForce RTX 2080 Ti
+                      uuid: GPU-ab9b01e9-84b1-a9f7-a920-c6c35622eb08
+                    - architecture: Turing
+                      cudaCores: 4352
+                      memoryTotal: "11811160064"
+                      name: NVIDIA GeForce RTX 2080 Ti
+                      uuid: GPU-0d01dd9d-98f2-0553-ab1d-70c0b1912df6
+                host: shadowfax
+                memory:
+                    total: "134784618496"
+                os: Linux-6.8.0-56-generic-x86_64-with-glibc2.39
+                program: /accounts/projects/peter/gatmiry/distributional-CoT/train.py
+                python: CPython 3.13.2
+                root: /accounts/projects/peter/gatmiry/distributional-CoT
+                slurm:
+                    account: site
+                    job_id: "2625820"
+                startedAt: "2025-11-23T05:20:31.324081Z"
+                writerId: jq01nugzzlevsyh15dmu3f5xf9v5lct3
+        m: []
+        python_version: 3.13.2
+        t:
+            "1":
+                - 50
+            "2":
+                - 1
+                - 50
+            "3":
+                - 13
+                - 15
+                - 16
+            "4": 3.13.2
+            "5": 0.22.3
+            "12": 0.22.3
+            "13": linux-x86_64
+debug:
+    value: false
+trainer:
+    value:
+        _target_: test_composite_function.test_composite_function
+        cfg:
+            batch_size: 1
+            dropout: 0.1
+            flipping_subsets: []
+            function_dim: 10
+            learning_rate: 0.0001
+            max_steps: 10000
+            n_embd: 64
+            n_heads: 1
+            n_layers: 2
+            target_function_string: 1.0x0x2x6 + 1.0x3x4x6x8
+            vocab_size: 3
+wandb_config:
+    value:
+        name: composite-function-test
+        notes: Testing composite function with CoT
+        project: distributional-cot
+        tags:
+            - train

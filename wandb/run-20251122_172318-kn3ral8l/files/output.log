@@ -1,0 +1,137 @@
+================================================================================
+Using device: cuda
+output_vals  tensor([0.1620, 0.0145, 0.0102], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([2., 2., 1.], device='cuda:0')
+Step 0 Loss: 1.4958715438842773 Final Loss: 0.8281170725822449
+output_vals  tensor([-0.0089,  0.1328,  1.1417], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([0., 0., 1.], device='cuda:0')
+Step 100 Loss: 0.028627505525946617 Final Loss: 2.411440372467041
+output_vals  tensor([-0.0084,  0.0585,  1.0186], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([0., 0., 1.], device='cuda:0')
+Step 200 Loss: 0.0011138870613649487 Final Loss: 2.853267192840576
+output_vals  tensor([1.9943, 1.9976, 0.9937], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([2., 2., 1.], device='cuda:0')
+Step 300 Loss: 0.0003425485920161009 Final Loss: 2.6656341552734375
+output_vals  tensor([ 2.0022, -1.9917,  0.9920], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2., -2.,  1.], device='cuda:0')
+Step 400 Loss: 0.00016008706006687135 Final Loss: 2.6127543449401855
+output_vals  tensor([1.9992, 2.0006, 0.9967], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([2., 2., 1.], device='cuda:0')
+Step 500 Loss: 8.297873137053102e-05 Final Loss: 2.93343448638916
+output_vals  tensor([1.9997, 1.9997, 0.9961], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([2., 2., 1.], device='cuda:0')
+Step 600 Loss: 4.1891977161867544e-05 Final Loss: 2.683969020843506
+output_vals  tensor([-6.2694e-03, -1.4899e-04,  1.0043e+00], device='cuda:0',
+       grad_fn=<SliceBackward0>)  cot_outputs  tensor([0., 0., 1.], device='cuda:0')
+Step 700 Loss: 3.5762386687565595e-05 Final Loss: 3.122182846069336
+output_vals  tensor([-0.0045,  0.0143,  1.0009], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([0., 0., 1.], device='cuda:0')
+Step 800 Loss: 2.1182113414397463e-05 Final Loss: 2.9386518001556396
+output_vals  tensor([2.0000, 1.9998, 1.0019], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([2., 2., 1.], device='cuda:0')
+Step 900 Loss: 1.3950446373200975e-05 Final Loss: 2.8732340335845947
+output_vals  tensor([1.9998, 2.0000, 1.0016], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([2., 2., 1.], device='cuda:0')
+Step 1000 Loss: 5.498069640452741e-06 Final Loss: 3.500382423400879
+output_vals  tensor([ 0.0013, -0.0025,  1.0005], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([0., 0., 1.], device='cuda:0')
+Step 1100 Loss: 6.676251359749585e-06 Final Loss: 2.8106842041015625
+output_vals  tensor([-6.0322e-03, -5.9091e-04,  9.9995e-01], device='cuda:0',
+       grad_fn=<SliceBackward0>)  cot_outputs  tensor([0., 0., 1.], device='cuda:0')
+Step 1200 Loss: 8.050014912441839e-06 Final Loss: 3.125013828277588
+output_vals  tensor([ 2.0016, -2.0005,  1.0005], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2., -2.,  1.], device='cuda:0')
+Step 1300 Loss: 4.5373308239504695e-06 Final Loss: 2.751244306564331
+output_vals  tensor([ 2.0000, -2.0000,  1.0004], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2., -2.,  1.], device='cuda:0')
+Step 1400 Loss: 2.1460857624333585e-06 Final Loss: 3.312930107116699
+output_vals  tensor([ 2.0001, -2.0002,  0.9996], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2., -2.,  1.], device='cuda:0')
+Step 1500 Loss: 1.4408026345336111e-06 Final Loss: 3.2504687309265137
+output_vals  tensor([-7.6465e-04, -1.1525e-03,  9.9992e-01], device='cuda:0',
+       grad_fn=<SliceBackward0>)  cot_outputs  tensor([0., 0., 1.], device='cuda:0')
+Step 1600 Loss: 1.7177570725834812e-06 Final Loss: 2.56209659576416
+output_vals  tensor([ 1.1391e-03, -4.4695e-04,  1.0016e+00], device='cuda:0',
+       grad_fn=<SliceBackward0>)  cot_outputs  tensor([0., 0., 1.], device='cuda:0')
+Step 1700 Loss: 1.3815631518809823e-06 Final Loss: 2.9374022483825684
+output_vals  tensor([2.0001, 1.9998, 1.0009], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([2., 2., 1.], device='cuda:0')
+Step 1800 Loss: 2.3482984033762477e-05 Final Loss: 2.688664436340332
+Traceback (most recent call last):
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 51, in <module>
+    main()
+    ~~~~^^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+    ~~~~~~~~~~^
+        args=args,
+        ^^^^^^^^^^
+    ...<3 lines>...
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+    ~~~~~~~~^
+        run=args.run,
+        ^^^^^^^^^^^^^
+    ...<5 lines>...
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+    ~~~~~~~~~~~~~~^
+        lambda: hydra.run(
+        ^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        )
+        ^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+            ~~~~~~~~~^
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        task_function=task_function,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+        hydra_context=HydraContext(
+    ...<6 lines>...
+        configure_logging=with_log_configuration,
+    )
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+                       ~~~~~~~~~~~~~^^^^^^^^^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 47, in main
+    train.fit()
+    ~~~~~~~~~^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/test_composite_function.py", line 63, in fit
+    output_vals, loss = model(batch, cot_outputs)
+                        ~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/model.py", line 103, in forward
+    x = block(x)
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/model.py", line 63, in forward
+    x = x + self.c_attn(self.ln_1(x), last_k_no_attend=0, window_size=0)
+            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/model.py", line 51, in forward
+    y = self.c_proj(y)
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

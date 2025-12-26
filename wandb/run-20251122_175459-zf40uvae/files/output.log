@@ -1,0 +1,153 @@
+================================================================================
+Using device: cuda
+batch  tensor([1, 1, 1, 1, 1, 0, 0, 1, 0, 0], device='cuda:0')  output_vals  tensor([-0.0173, -0.2084, -0.1942, -0.1544, -0.1560, -0.1856,  0.0857, -0.0895,
+        -0.0049, -0.1659], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([2., 2., 2., 2., 2., 0., 0., 0., 2., 2.], device='cuda:0')
+Step 0 Loss: 3.181135892868042 Final Loss: 4.019679546356201
+batch  tensor([0, 0, 1, 1, 1, 0, 0, 0, 0, 1], device='cuda:0')  output_vals  tensor([ 0.9359,  0.0277, -0.4213,  0.1365,  0.1194,  0.3382,  1.1151,  1.0912,
+        -0.6172,  1.1135], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([0., 0., 0., 0., 0., 2., 2., 0., 2., 2.], device='cuda:0')
+Step 100 Loss: 1.345796823501587 Final Loss: 6.849848747253418
+batch  tensor([0, 1, 1, 0, 0, 0, 1, 0, 1, 0], device='cuda:0')  output_vals  tensor([ 0.5050, -0.2250, -0.1797, -0.0909,  0.9407,  0.8164, -0.1034, -0.0942,
+         0.7716,  0.9232], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([0., 0., 0., 2., 2., 0., 0., 2., 2., 2.], device='cuda:0')
+Step 200 Loss: 1.3563292026519775 Final Loss: 1.5089730024337769
+batch  tensor([1, 0, 0, 0, 0, 0, 0, 0, 1, 1], device='cuda:0')  output_vals  tensor([ 0.4126,  0.2617, -0.8038,  0.0185,  1.0441,  0.7617,  0.0522,  0.2698,
+         0.6904,  1.0124], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2., -2.,  0.,  2.,  2.,  0.,  0.,  2.,  2.,  2.], device='cuda:0')
+Step 300 Loss: 1.938841700553894 Final Loss: 1.7149244546890259
+batch  tensor([1, 0, 1, 0, 1, 1, 0, 0, 0, 1], device='cuda:0')  output_vals  tensor([ 1.4140,  0.0846, -1.1372, -1.0902, -0.0768,  0.3569, -0.0702,  0.1683,
+         1.1604,  0.0802], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2., -2., -2.,  0.,  0.,  0.,  0.,  2.,  0.,  0.], device='cuda:0')
+Step 400 Loss: 1.1468286514282227 Final Loss: 1.3464198112487793
+batch  tensor([1, 0, 0, 1, 0, 0, 1, 0, 1, 0], device='cuda:0')  output_vals  tensor([ 1.5872e+00,  1.4388e-01, -1.0576e+00, -4.1071e-03, -4.2828e-02,
+         4.6948e-03, -1.6380e+00, -1.1750e+00, -1.6826e-01, -4.3623e-04],
+       device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2., -2.,  0.,  0.,  0., -2., -2.,  0.,  0.,  0.], device='cuda:0')
+Step 500 Loss: 1.144593596458435 Final Loss: 0.02831287495791912
+batch  tensor([1, 1, 1, 0, 0, 0, 0, 0, 1, 0], device='cuda:0')  output_vals  tensor([ 1.6661,  0.5388,  1.2086,  1.1249,  0.0056,  0.0860, -1.6757, -0.9435,
+         0.1462,  0.0530], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2.,  2.,  2.,  0.,  0., -2., -2.,  0.,  0.,  0.], device='cuda:0')
+Step 600 Loss: 0.9509124755859375 Final Loss: 0.02138172648847103
+batch  tensor([1, 0, 1, 1, 0, 1, 0, 1, 1, 1], device='cuda:0')  output_vals  tensor([ 1.8179, -0.0627, -0.8633, -0.9358, -1.8390, -1.0413, -1.8369, -1.2153,
+        -1.1659, -1.8138], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2., -2., -2., -2., -2., -2., -2., -2., -2., -2.], device='cuda:0')
+Step 700 Loss: 0.8528688549995422 Final Loss: 0.6957314014434814
+batch  tensor([1, 0, 0, 1, 1, 1, 1, 0, 1, 0], device='cuda:0')  output_vals  tensor([ 1.8529, -1.5877, -0.9532, -0.2015, -0.0419, -0.1519, -0.0256, -0.1674,
+        -1.0799, -1.9115], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2., -2.,  0.,  0.,  0.,  0.,  0., -2., -2., -2.], device='cuda:0')
+Step 800 Loss: 0.5379274487495422 Final Loss: 0.8466423153877258
+batch  tensor([1, 0, 0, 0, 0, 0, 1, 0, 1, 1], device='cuda:0')  output_vals  tensor([ 1.8168, -1.7798, -0.8285, -0.2022,  1.9257,  0.5346, -0.2274,  0.0554,
+         0.6868,  1.8756], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2., -2.,  0.,  2.,  2.,  0.,  0.,  2.,  2.,  2.], device='cuda:0')
+Step 900 Loss: 1.1482576131820679 Final Loss: 1.7244491577148438
+batch  tensor([0, 1, 0, 0, 0, 1, 0, 1, 0, 0], device='cuda:0')  output_vals  tensor([ 0.0193,  0.1045, -0.3213, -0.8682, -0.1636,  0.0768, -0.2148, -0.0956,
+        -0.1142,  1.9563], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 0.,  0., -2.,  0.,  0.,  0.,  0.,  0.,  2.,  2.], device='cuda:0')
+Step 1000 Loss: 0.8142771124839783 Final Loss: 4.469720363616943
+batch  tensor([1, 0, 0, 0, 0, 0, 1, 1, 0, 0], device='cuda:0')  output_vals  tensor([ 2.0153, -1.8854, -0.7218, -0.0178,  2.0231,  0.8946,  0.0590,  0.0054,
+         0.2371,  2.0164], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2., -2.,  0.,  2.,  2.,  0.,  0.,  0.,  2.,  2.], device='cuda:0')
+Step 1100 Loss: 0.8518285751342773 Final Loss: 3.1078336238861084
+batch  tensor([0, 0, 0, 1, 0, 0, 1, 0, 1, 0], device='cuda:0')  output_vals  tensor([ 0.1478, -0.1416,  0.2678,  0.5559,  1.9262,  0.6291,  0.1242,  0.1803,
+         0.7678,  1.8217], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([0., 0., 2., 2., 2., 0., 0., 2., 2., 2.], device='cuda:0')
+Step 1200 Loss: 1.0405974388122559 Final Loss: 1.5184193849563599
+batch  tensor([1, 1, 0, 0, 1, 0, 1, 1, 1, 1], device='cuda:0')  output_vals  tensor([ 2.0008,  1.9432, -0.2278, -0.4243, -1.7068, -0.9760, -0.0984, -0.5929,
+        -0.3652, -0.0463], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2.,  2.,  0., -2., -2.,  0.,  0.,  0.,  0.,  0.], device='cuda:0')
+Step 1300 Loss: 0.40732666850090027 Final Loss: 0.13336549699306488
+batch  tensor([0, 0, 1, 0, 1, 0, 1, 1, 1, 0], device='cuda:0')  output_vals  tensor([ 0.1672, -0.1031,  0.5921,  0.2387, -1.9745, -0.8477,  0.1086, -0.4339,
+        -0.1854,  0.0734], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 0.,  0.,  0., -2., -2.,  0.,  0.,  0.,  0.,  0.], device='cuda:0')
+Step 1400 Loss: 0.6360292434692383 Final Loss: 0.03438312187790871
+batch  tensor([1, 0, 1, 0, 1, 0, 1, 1, 1, 0], device='cuda:0')  output_vals  tensor([ 1.8814, -1.9890, -0.8263, -0.8591, -0.0779,  0.0222,  1.7685,  1.2801,
+         1.3169,  1.8879], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2., -2., -2.,  0.,  0.,  2.,  2.,  2.,  2.,  2.], device='cuda:0')
+Step 1500 Loss: 0.7098645567893982 Final Loss: 0.466683566570282
+batch  tensor([0, 0, 0, 0, 0, 0, 1, 0, 1, 0], device='cuda:0')  output_vals  tensor([ 0.0313, -0.3081,  0.5208,  0.2853,  0.2472,  0.1035, -1.8012, -0.5962,
+         0.0371,  0.1560], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 0.,  0.,  2.,  0.,  0., -2., -2.,  0.,  0.,  0.], device='cuda:0')
+Step 1600 Loss: 0.7271925806999207 Final Loss: 0.0013736473629251122
+batch  tensor([1, 1, 1, 1, 0, 1, 0, 0, 0, 0], device='cuda:0')  output_vals  tensor([1.9943, 1.8988, 1.9504, 1.7357, 2.0356, 1.1458, 2.0247, 1.0045, 0.6244,
+        2.0147], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([2., 2., 2., 2., 2., 2., 2., 0., 2., 2.], device='cuda:0')
+Step 1700 Loss: 0.37155553698539734 Final Loss: 1.8922126293182373
+batch  tensor([0, 0, 1, 1, 0, 0, 1, 0, 1, 1], device='cuda:0')  output_vals  tensor([ 0.1229, -0.2045,  0.1380, -0.6901,  0.0397, -0.0271,  1.8861,  1.5087,
+         1.1694,  0.0387], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([0., 0., 0., 0., 0., 2., 2., 0., 0., 0.], device='cuda:0')
+Step 1800 Loss: 0.8321059346199036 Final Loss: 1.3674224615097046
+batch  tensor([1, 0, 1, 0, 0, 0, 1, 0, 1, 1], device='cuda:0')  output_vals  tensor([ 2.0396, -1.8329, -0.9269, -0.8289, -0.0362,  0.0792,  1.9245,  1.0703,
+         0.1476,  0.0054], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2., -2., -2.,  0.,  0.,  2.,  2.,  0.,  0.,  0.], device='cuda:0')
+Step 1900 Loss: 0.6732202172279358 Final Loss: 0.02178991585969925
+batch  tensor([1, 1, 1, 0, 1, 0, 1, 1, 1, 1], device='cuda:0')  output_vals  tensor([ 1.9426,  2.0519,  1.6993,  0.8905,  0.1057, -0.5730, -1.8207, -1.2709,
+        -1.4845, -1.7605], device='cuda:0', grad_fn=<SliceBackward0>)  cot_outputs  tensor([ 2.,  2.,  2.,  0.,  0., -2., -2., -2., -2., -2.], device='cuda:0')
+Step 2000 Loss: 0.38237759470939636 Final Loss: 0.2657022178173065
+Traceback (most recent call last):
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 51, in <module>
+    main()
+    ~~~~^^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+    ~~~~~~~~~~^
+        args=args,
+        ^^^^^^^^^^
+    ...<3 lines>...
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+    ~~~~~~~~^
+        run=args.run,
+        ^^^^^^^^^^^^^
+    ...<5 lines>...
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+    ~~~~~~~~~~~~~~^
+        lambda: hydra.run(
+        ^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        )
+        ^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+            ~~~~~~~~~^
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        task_function=task_function,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+        hydra_context=HydraContext(
+    ...<6 lines>...
+        configure_logging=with_log_configuration,
+    )
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+                       ~~~~~~~~~~~~~^^^^^^^^^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 47, in main
+    train.fit()
+    ~~~~~~~~~^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/test_composite_function.py", line 64, in fit
+    loss.backward()
+    ~~~~~~~~~~~~~^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        self, gradient, retain_graph, create_graph, inputs=inputs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+    ~~~~~~~~~~~~~~~~~~~~^
+        tensors,
+        ^^^^^^^^
+    ...<5 lines>...
+        accumulate_grad=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        t_outputs, *args, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )  # Calls into the C++ engine to run the backward pass
+    ^
+KeyboardInterrupt

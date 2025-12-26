@@ -1,0 +1,88 @@
+================================================================================
+Using device: cuda
+Traceback (most recent call last):
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 51, in <module>
+    main()
+    ~~~~^^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+    ~~~~~~~~~~^
+        args=args,
+        ^^^^^^^^^^
+    ...<3 lines>...
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+    ~~~~~~~~^
+        run=args.run,
+        ^^^^^^^^^^^^^
+    ...<5 lines>...
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+    ~~~~~~~~~~~~~~^
+        lambda: hydra.run(
+        ^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        )
+        ^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+            ~~~~~~~~~^
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        task_function=task_function,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+        hydra_context=HydraContext(
+    ...<6 lines>...
+        configure_logging=with_log_configuration,
+    )
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+                       ~~~~~~~~~~~~~^^^^^^^^^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 47, in main
+    train.fit()
+    ~~~~~~~~~^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/test_composite_function.py", line 63, in fit
+    output_vals, loss = model(batch, cot_outputs)
+                        ~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/model.py", line 103, in forward
+    x = block(x)
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/model.py", line 63, in forward
+    x = x + self.c_attn(self.ln_1(x), last_k_no_attend=0, window_size=0)
+            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/model.py", line 34, in forward
+    attn = q @ k.transpose(-1,-2) * (k.size(-1)) ** -0.5
+                                     ~~~~~~^^^^
+KeyboardInterrupt

@@ -1,0 +1,88 @@
+Step 0 Loss: 1.1156073808670044 Final Loss: 1.1156073808670044
+Step 100 Loss: 0.2428896278142929 Final Loss: 0.2428896278142929
+Step 200 Loss: 0.22297728061676025 Final Loss: 0.22297728061676025
+Step 300 Loss: 0.24434170126914978 Final Loss: 0.24434170126914978
+Step 400 Loss: 0.22521823644638062 Final Loss: 0.22521823644638062
+Step 500 Loss: 0.23135603964328766 Final Loss: 0.23135603964328766
+Step 600 Loss: 0.23472055792808533 Final Loss: 0.23472055792808533
+Step 700 Loss: 0.19212400913238525 Final Loss: 0.19212400913238525
+Step 800 Loss: 0.1500842571258545 Final Loss: 0.1500842571258545
+Step 900 Loss: 0.08836450427770615 Final Loss: 0.08836450427770615
+Step 1000 Loss: 0.056605078279972076 Final Loss: 0.056605078279972076
+Step 1100 Loss: 0.04249018430709839 Final Loss: 0.04249018430709839
+Step 1200 Loss: 0.012858944945037365 Final Loss: 0.012858944945037365
+Step 1300 Loss: 0.0033404543064534664 Final Loss: 0.0033404543064534664
+Step 1400 Loss: 0.000573714729398489 Final Loss: 0.000573714729398489
+Step 1500 Loss: 0.00044772622641175985 Final Loss: 0.00044772622641175985
+Step 1600 Loss: 0.00017711106920614839 Final Loss: 0.00017711106920614839
+Step 1700 Loss: 0.00021223319345153868 Final Loss: 0.00021223319345153868
+Step 1800 Loss: 0.0002930833725258708 Final Loss: 0.0002930833725258708
+Step 1900 Loss: 0.00015023761079646647 Final Loss: 0.00015023761079646647
+Traceback (most recent call last):
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 51, in <module>
+    main()
+    ~~~~^^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+    ~~~~~~~~~~^
+        args=args,
+        ^^^^^^^^^^
+    ...<3 lines>...
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+    ~~~~~~~~^
+        run=args.run,
+        ^^^^^^^^^^^^^
+    ...<5 lines>...
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+    ~~~~~~~~~~~~~~^
+        lambda: hydra.run(
+        ^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        )
+        ^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+            ~~~~~~~~~^
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        task_function=task_function,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+        hydra_context=HydraContext(
+    ...<6 lines>...
+        configure_logging=with_log_configuration,
+    )
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+                       ~~~~~~~~~~~~~^^^^^^^^^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 47, in main
+    train.fit()
+    ~~~~~~~~~^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/test_composite_function.py", line 79, in fit
+    batch, cot_outputs = dataset.get_batch(batch_size=batch_size, flipping_subsets=flipping_subsets)
+                         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/test_composite_function.py", line 239, in get_batch
+    result = self.target_function(cot_tmp_batch_flipping)
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/test_composite_function.py", line 197, in compute_function
+    term_vals = term_vals * samples[:, var]
+    ^^^^^^^^^
+KeyboardInterrupt

@@ -1,0 +1,40 @@
+{
+  "os":  "Linux-6.8.0-55-generic-x86_64-with-glibc2.39",
+  "python":  "CPython 3.13.2",
+  "startedAt":  "2025-11-22T23:45:38.908018Z",
+  "program":  "/accounts/projects/peter/gatmiry/distributional-CoT/train.py",
+  "codePath":  "train.py",
+  "codePathLocal":  "train.py",
+  "email":  "khashayargatmiry@gmail.com",
+  "root":  "/accounts/projects/peter/gatmiry/distributional-CoT",
+  "host":  "merry",
+  "executable":  "/usr/local/linux/miniforge-3.13/bin/python",
+  "cpu_count":  4,
+  "cpu_count_logical":  4,
+  "gpu":  "NVIDIA GeForce GTX TITAN X",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "63090503680",
+      "used":  "38171766784"
+    }
+  },
+  "memory":  {
+    "total":  "16656240640"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce GTX TITAN X",
+      "memoryTotal":  "12884901888",
+      "cudaCores":  3072,
+      "architecture":  "Maxwell",
+      "uuid":  "GPU-a0083014-1eb7-14d6-6570-7273d7b1e407"
+    }
+  ],
+  "cudaVersion":  "12.8",
+  "slurm":  {
+    "account":  "site",
+    "job_id":  "2624904"
+  },
+  "writerId":  "r78c98743zf9vg4lv7px2bnnkpkpwml0"
+}

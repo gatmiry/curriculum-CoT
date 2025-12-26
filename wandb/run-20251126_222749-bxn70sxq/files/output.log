@@ -1,0 +1,104 @@
+Step 0 Loss: 1.0475239753723145 Final Loss: 1.0475239753723145
+Step 100 Loss: 0.2297532856464386 Final Loss: 0.2297532856464386
+Step 200 Loss: 0.08701393008232117 Final Loss: 0.08701393008232117
+Step 300 Loss: 0.02984919585287571 Final Loss: 0.02984919585287571
+Step 400 Loss: 0.02220582216978073 Final Loss: 0.02220582216978073
+Step 500 Loss: 0.012080234475433826 Final Loss: 0.012080234475433826
+Step 600 Loss: 0.014334261417388916 Final Loss: 0.014334261417388916
+Step 700 Loss: 0.01079754438251257 Final Loss: 0.01079754438251257
+Step 800 Loss: 0.010520162992179394 Final Loss: 0.010520162992179394
+Step 900 Loss: 0.005908164195716381 Final Loss: 0.005908164195716381
+Step 1000 Loss: 0.004439241718500853 Final Loss: 0.004439241718500853
+Step 1100 Loss: 0.0021793339401483536 Final Loss: 0.0021793339401483536
+Step 1200 Loss: 0.0019315574318170547 Final Loss: 0.0019315574318170547
+Traceback (most recent call last):
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 51, in <module>
+    main()
+    ~~~~^^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+    ~~~~~~~~~~^
+        args=args,
+        ^^^^^^^^^^
+    ...<3 lines>...
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+    ~~~~~~~~^
+        run=args.run,
+        ^^^^^^^^^^^^^
+    ...<5 lines>...
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+    ~~~~~~~~~~~~~~^
+        lambda: hydra.run(
+        ^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        )
+        ^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+            ~~~~~~~~~^
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        task_function=task_function,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+        hydra_context=HydraContext(
+    ...<6 lines>...
+        configure_logging=with_log_configuration,
+    )
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+                       ~~~~~~~~~~~~~^^^^^^^^^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 47, in main
+    train.fit()
+    ~~~~~~~~~^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/test_composite_function.py", line 86, in fit
+    optimizer.step()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/optim/optimizer.py", line 493, in wrapper
+    out = func(*args, **kwargs)
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/optim/optimizer.py", line 91, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/optim/adamw.py", line 243, in step
+    adamw(
+    ~~~~~^
+        params_with_grad,
+        ^^^^^^^^^^^^^^^^^
+    ...<18 lines>...
+        has_complex=has_complex,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/optim/optimizer.py", line 154, in maybe_fallback
+    return func(*args, **kwargs)
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/optim/adamw.py", line 875, in adamw
+    func(
+    ~~~~^
+        params,
+        ^^^^^^^
+    ...<16 lines>...
+        has_complex=has_complex,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/optim/adamw.py", line 699, in _multi_tensor_adamw
+    exp_avg_sq_sqrt = torch._foreach_sqrt(device_exp_avg_sqs)
+KeyboardInterrupt

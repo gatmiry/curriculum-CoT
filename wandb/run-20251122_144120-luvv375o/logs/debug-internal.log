@@ -1,0 +1,11 @@
+{"time":"2025-11-22T14:41:20.778223424-08:00","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2025-11-22T14:41:21.010066967-08:00","level":"INFO","msg":"stream: created new stream","id":"luvv375o"}
+{"time":"2025-11-22T14:41:21.010113751-08:00","level":"INFO","msg":"handler: started","stream_id":"luvv375o"}
+{"time":"2025-11-22T14:41:21.011906364-08:00","level":"INFO","msg":"stream: started","id":"luvv375o"}
+{"time":"2025-11-22T14:41:21.011977492-08:00","level":"INFO","msg":"writer: started","stream_id":"luvv375o"}
+{"time":"2025-11-22T14:41:21.011999346-08:00","level":"INFO","msg":"sender: started","stream_id":"luvv375o"}
+{"time":"2025-11-22T14:41:25.377554332-08:00","level":"INFO","msg":"stream: closing","id":"luvv375o"}
+{"time":"2025-11-22T14:41:25.917322733-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-22T14:41:26.073028773-08:00","level":"INFO","msg":"handler: closed","stream_id":"luvv375o"}
+{"time":"2025-11-22T14:41:26.074334839-08:00","level":"INFO","msg":"sender: closed","stream_id":"luvv375o"}
+{"time":"2025-11-22T14:41:26.074378713-08:00","level":"INFO","msg":"stream: closed","id":"luvv375o"}

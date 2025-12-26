@@ -1,0 +1,23 @@
+2025-11-22 17:06:23,969 INFO    MainThread:1424178 [wandb_setup.py:_flush():81] Current SDK version is 0.22.3
+2025-11-22 17:06:23,969 INFO    MainThread:1424178 [wandb_setup.py:_flush():81] Configure stats pid to 1424178
+2025-11-22 17:06:23,969 INFO    MainThread:1424178 [wandb_setup.py:_flush():81] Loading settings from /accounts/projects/peter/gatmiry/.config/wandb/settings
+2025-11-22 17:06:23,969 INFO    MainThread:1424178 [wandb_setup.py:_flush():81] Loading settings from /accounts/projects/peter/gatmiry/distributional-CoT/wandb/settings
+2025-11-22 17:06:23,970 INFO    MainThread:1424178 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-11-22 17:06:23,970 INFO    MainThread:1424178 [wandb_init.py:setup_run_log_directory():706] Logging user logs to /accounts/projects/peter/gatmiry/distributional-CoT/wandb/run-20251122_170623-2tkqmlfz/logs/debug.log
+2025-11-22 17:06:23,970 INFO    MainThread:1424178 [wandb_init.py:setup_run_log_directory():707] Logging internal logs to /accounts/projects/peter/gatmiry/distributional-CoT/wandb/run-20251122_170623-2tkqmlfz/logs/debug-internal.log
+2025-11-22 17:06:23,970 INFO    MainThread:1424178 [wandb_init.py:init():833] calling init triggers
+2025-11-22 17:06:23,970 INFO    MainThread:1424178 [wandb_init.py:init():838] wandb.init called with sweep_config: {}
+config: {'trainer': {'_target_': 'test_composite_function.test_composite_function', 'cfg': {'function_dim': 12, 'flipping_subsets': [[0], [1]], 'target_function_string': '1.0x0x1x2x3x4x5 + 1.0x2x3x7x8x9x10', 'n_layers': 2, 'n_heads': 1, 'n_embd': 64, 'dropout': 0.1, 'batch_size': 128, 'learning_rate': 0.0001, 'max_steps': 10000, 'vocab_size': 3}}, 'wandb_config': {'project': 'distributional-cot', 'name': 'composite-function-test', 'tags': ['train'], 'notes': 'Testing composite function with CoT'}, 'debug': False, '_wandb': {}}
+2025-11-22 17:06:23,970 INFO    MainThread:1424178 [wandb_init.py:init():881] starting backend
+2025-11-22 17:06:24,208 INFO    MainThread:1424178 [wandb_init.py:init():884] sending inform_init request
+2025-11-22 17:06:24,221 INFO    MainThread:1424178 [wandb_init.py:init():892] backend started and connected
+2025-11-22 17:06:24,224 INFO    MainThread:1424178 [wandb_init.py:init():962] updated telemetry
+2025-11-22 17:06:24,226 INFO    MainThread:1424178 [wandb_init.py:init():986] communicating run to backend with 90.0 second timeout
+2025-11-22 17:06:24,841 INFO    MainThread:1424178 [wandb_init.py:init():1033] starting run threads in backend
+2025-11-22 17:06:25,321 INFO    MainThread:1424178 [wandb_run.py:_console_start():2506] atexit reg
+2025-11-22 17:06:25,321 INFO    MainThread:1424178 [wandb_run.py:_redirect():2354] redirect: wrap_raw
+2025-11-22 17:06:25,321 INFO    MainThread:1424178 [wandb_run.py:_redirect():2423] Wrapping output streams.
+2025-11-22 17:06:25,321 INFO    MainThread:1424178 [wandb_run.py:_redirect():2446] Redirects installed.
+2025-11-22 17:06:25,324 INFO    MainThread:1424178 [wandb_init.py:init():1073] run started, returning control to user process
+2025-11-22 17:09:33,372 INFO    wandb-AsyncioManager-main:1424178 [service_client.py:_forward_responses():80] Reached EOF.
+2025-11-22 17:09:33,372 INFO    wandb-AsyncioManager-main:1424178 [mailbox.py:close():137] Closing mailbox, abandoning 1 handles.

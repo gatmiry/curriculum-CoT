@@ -1,0 +1,11 @@
+{"time":"2025-11-22T14:46:22.828852097-08:00","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2025-11-22T14:46:23.073412852-08:00","level":"INFO","msg":"stream: created new stream","id":"dftsuvmb"}
+{"time":"2025-11-22T14:46:23.073678357-08:00","level":"INFO","msg":"handler: started","stream_id":"dftsuvmb"}
+{"time":"2025-11-22T14:46:23.096124362-08:00","level":"INFO","msg":"stream: started","id":"dftsuvmb"}
+{"time":"2025-11-22T14:46:23.096221254-08:00","level":"INFO","msg":"writer: started","stream_id":"dftsuvmb"}
+{"time":"2025-11-22T14:46:23.096265427-08:00","level":"INFO","msg":"sender: started","stream_id":"dftsuvmb"}
+{"time":"2025-11-22T14:46:30.71218016-08:00","level":"INFO","msg":"stream: closing","id":"dftsuvmb"}
+{"time":"2025-11-22T14:46:31.071800161-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-22T14:46:31.248534199-08:00","level":"INFO","msg":"handler: closed","stream_id":"dftsuvmb"}
+{"time":"2025-11-22T14:46:31.250379953-08:00","level":"INFO","msg":"sender: closed","stream_id":"dftsuvmb"}
+{"time":"2025-11-22T14:46:31.250424322-08:00","level":"INFO","msg":"stream: closed","id":"dftsuvmb"}

@@ -1,0 +1,11 @@
+{"time":"2025-11-22T17:54:59.60900129-08:00","level":"INFO","msg":"stream: starting","core version":"0.22.3"}
+{"time":"2025-11-22T17:54:59.826527959-08:00","level":"INFO","msg":"stream: created new stream","id":"zf40uvae"}
+{"time":"2025-11-22T17:54:59.82659187-08:00","level":"INFO","msg":"handler: started","stream_id":"zf40uvae"}
+{"time":"2025-11-22T17:54:59.829196512-08:00","level":"INFO","msg":"stream: started","id":"zf40uvae"}
+{"time":"2025-11-22T17:54:59.829224064-08:00","level":"INFO","msg":"writer: started","stream_id":"zf40uvae"}
+{"time":"2025-11-22T17:54:59.829255469-08:00","level":"INFO","msg":"sender: started","stream_id":"zf40uvae"}
+{"time":"2025-11-22T17:55:19.509240623-08:00","level":"INFO","msg":"stream: closing","id":"zf40uvae"}
+{"time":"2025-11-22T17:55:19.935644944-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-22T17:55:20.115483466-08:00","level":"INFO","msg":"handler: closed","stream_id":"zf40uvae"}
+{"time":"2025-11-22T17:55:20.117637192-08:00","level":"INFO","msg":"sender: closed","stream_id":"zf40uvae"}
+{"time":"2025-11-22T17:55:20.117647962-08:00","level":"INFO","msg":"stream: closed","id":"zf40uvae"}

@@ -1,0 +1,23 @@
+trainer:
+  _target_: test_composite_function.test_composite_function
+  cfg:
+    function_dim: 12
+    flipping_subsets:
+    - - 0
+    - - 1
+    target_function_string: 1.0x0x1 + 1.0x2x3
+    n_layers: 2
+    n_heads: 1
+    n_embd: 64
+    dropout: 0.1
+    batch_size: 128
+    learning_rate: 0.0001
+    max_steps: 10000
+    vocab_size: 3
+wandb_config:
+  project: distributional-cot
+  name: composite-function-test
+  tags:
+  - train
+  notes: Testing composite function with CoT
+debug: false

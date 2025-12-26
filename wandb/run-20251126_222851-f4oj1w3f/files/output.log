@@ -1,0 +1,82 @@
+Step 0 Loss: 1.2083518505096436 Final Loss: 1.2083518505096436
+Step 100 Loss: 0.22809109091758728 Final Loss: 0.22809109091758728
+Step 200 Loss: 0.04943589121103287 Final Loss: 0.04943589121103287
+Step 300 Loss: 0.00923658162355423 Final Loss: 0.00923658162355423
+Step 400 Loss: 0.004145778715610504 Final Loss: 0.004145778715610504
+Step 500 Loss: 0.0017403007950633764 Final Loss: 0.0017403007950633764
+Step 600 Loss: 0.001255926676094532 Final Loss: 0.001255926676094532
+Step 700 Loss: 0.001119843334890902 Final Loss: 0.001119843334890902
+Step 800 Loss: 0.0004251876089256257 Final Loss: 0.0004251876089256257
+Step 900 Loss: 0.0002820837253239006 Final Loss: 0.0002820837253239006
+Step 1000 Loss: 0.00015305547276511788 Final Loss: 0.00015305547276511788
+Step 1100 Loss: 9.779829997569323e-05 Final Loss: 9.779829997569323e-05
+Step 1200 Loss: 7.539910438936204e-05 Final Loss: 7.539910438936204e-05
+Step 1300 Loss: 6.302370456978679e-05 Final Loss: 6.302370456978679e-05
+Traceback (most recent call last):
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 51, in <module>
+    main()
+    ~~~~^^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+    ~~~~~~~~~~^
+        args=args,
+        ^^^^^^^^^^
+    ...<3 lines>...
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+    ~~~~~~~~^
+        run=args.run,
+        ^^^^^^^^^^^^^
+    ...<5 lines>...
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+    ~~~~~~~~~~~~~~^
+        lambda: hydra.run(
+        ^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        )
+        ^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+            ~~~~~~~~~^
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        task_function=task_function,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+        hydra_context=HydraContext(
+    ...<6 lines>...
+        configure_logging=with_log_configuration,
+    )
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+                       ~~~~~~~~~~~~~^^^^^^^^^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 47, in main
+    train.fit()
+    ~~~~~~~~~^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/test_composite_function.py", line 79, in fit
+    batch, cot_outputs = dataset.get_batch(batch_size=batch_size, flipping_subsets=flipping_subsets)
+                         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/test_composite_function.py", line 239, in get_batch
+    result = self.target_function(cot_tmp_batch_flipping)
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/test_composite_function.py", line 197, in compute_function
+    term_vals = term_vals * samples[:, var]
+    ^^^^^^^^^
+KeyboardInterrupt

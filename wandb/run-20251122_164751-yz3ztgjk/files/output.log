@@ -1,0 +1,139 @@
+================================================================================
+Using device: cuda
+Step 0 Loss: 1.8848152160644531 Final Loss: 0.9983614683151245
+Step 100 Loss: 0.673333466053009 Final Loss: 0.030521195381879807
+Step 200 Loss: 0.12311845272779465 Final Loss: 0.003592625493183732
+Step 300 Loss: 0.10756322741508484 Final Loss: 0.0017869991715997458
+Step 400 Loss: 0.0775691568851471 Final Loss: 0.0015056213596835732
+Step 500 Loss: 0.0671825036406517 Final Loss: 0.0009433279628865421
+Step 600 Loss: 0.06224396452307701 Final Loss: 0.0018070655642077327
+Step 700 Loss: 0.05354313924908638 Final Loss: 0.0017907696310430765
+Step 800 Loss: 0.041996393352746964 Final Loss: 0.008238475769758224
+Step 900 Loss: 0.011204580776393414 Final Loss: 0.0013103956589475274
+Step 1000 Loss: 0.0033623548224568367 Final Loss: 0.0007549482979811728
+Step 1100 Loss: 0.0017291646217927337 Final Loss: 0.00035605637822300196
+Step 1200 Loss: 0.0014084991998970509 Final Loss: 0.0003099656314589083
+Step 1300 Loss: 0.0010162797989323735 Final Loss: 0.00029257716960273683
+Step 1400 Loss: 0.0008455550414510071 Final Loss: 0.0002519675181247294
+Step 1500 Loss: 0.0005652303225360811 Final Loss: 0.0002099912817357108
+Step 1600 Loss: 0.0004812591359950602 Final Loss: 0.00015960680320858955
+Step 1700 Loss: 0.0004753257380798459 Final Loss: 0.0001542418758617714
+Step 1800 Loss: 0.00030473273363895714 Final Loss: 0.0001473416923545301
+Step 1900 Loss: 0.0002617187856230885 Final Loss: 0.00011059522512368858
+Step 2000 Loss: 0.000314411852741614 Final Loss: 0.0001357690489385277
+Step 2100 Loss: 0.0001934242172865197 Final Loss: 0.00010301109432475641
+Step 2200 Loss: 0.0002164958423236385 Final Loss: 9.287119610235095e-05
+Step 2300 Loss: 0.00022603521938435733 Final Loss: 9.709511505207047e-05
+Step 2400 Loss: 0.0001745344343362376 Final Loss: 0.00011301497579552233
+Step 2500 Loss: 0.00016904000949580222 Final Loss: 0.0001040764109347947
+Step 2600 Loss: 0.00018491757509764284 Final Loss: 8.43966772663407e-05
+Step 2700 Loss: 0.0001291268563363701 Final Loss: 7.671421917621046e-05
+Step 2800 Loss: 0.0001347655343124643 Final Loss: 6.453167588915676e-05
+Step 2900 Loss: 0.00011610695219133049 Final Loss: 5.665527714882046e-05
+Step 3000 Loss: 0.0002979981654789299 Final Loss: 9.583747305441648e-05
+Step 3100 Loss: 0.0004114556359127164 Final Loss: 6.58504432067275e-05
+Step 3200 Loss: 0.00025963730877265334 Final Loss: 8.36790568428114e-05
+Step 3300 Loss: 0.0001950674777617678 Final Loss: 7.368634396698326e-05
+Step 3400 Loss: 8.547868492314592e-05 Final Loss: 6.646658584941179e-05
+Step 3500 Loss: 0.00017472042236477137 Final Loss: 5.282949859974906e-05
+Step 3600 Loss: 6.850277713965625e-05 Final Loss: 5.6910190323833376e-05
+Step 3700 Loss: 0.00017246844072360545 Final Loss: 5.0772370741469786e-05
+Step 3800 Loss: 6.348905299091712e-05 Final Loss: 4.5123153540771455e-05
+Step 3900 Loss: 8.37832412798889e-05 Final Loss: 4.015663580503315e-05
+Step 4000 Loss: 0.00033623198396526277 Final Loss: 0.00015459011774510145
+Step 4100 Loss: 5.526292443391867e-05 Final Loss: 4.239778354531154e-05
+Step 4200 Loss: 5.783729284303263e-05 Final Loss: 3.893685061484575e-05
+Traceback (most recent call last):
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 51, in <module>
+    main()
+    ~~~~^^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+    ~~~~~~~~~~^
+        args=args,
+        ^^^^^^^^^^
+    ...<3 lines>...
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+    ~~~~~~~~^
+        run=args.run,
+        ^^^^^^^^^^^^^
+    ...<5 lines>...
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+    ~~~~~~~~~~~~~~^
+        lambda: hydra.run(
+        ^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        )
+        ^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+            ~~~~~~~~~^
+        config_name=config_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+        task_function=task_function,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        overrides=overrides,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+        hydra_context=HydraContext(
+    ...<6 lines>...
+        configure_logging=with_log_configuration,
+    )
+  File "/accounts/projects/peter/gatmiry/.local/lib/python3.13/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+                       ~~~~~~~~~~~~~^^^^^^^^^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/train.py", line 47, in main
+    train.fit()
+    ~~~~~~~~~^^
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/test_composite_function.py", line 63, in fit
+    output_vals, loss = model(batch, cot_outputs)
+                        ~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/model.py", line 103, in forward
+    x = block(x)
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/model.py", line 64, in forward
+    return x + self.c_fc(self.ln_2(x))
+               ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/accounts/projects/peter/gatmiry/distributional-CoT/model.py", line 14, in forward
+    return self.fc_2(self.gelu(self.fc_1(x)))
+                               ~~~~~~~~~^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/linux/miniforge-3.13/lib/python3.13/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
