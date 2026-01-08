@@ -3,6 +3,55 @@ import torch.nn.functional as F
 import torch
 import math
 device = 'cuda'
+
+def precompute_rope_freqs(head_dim, max_seq_len, theta=10000.0, device=None):
+    """Precompute cosine and sine frequencies for RoPE."""
+    # Compute frequency for each dimension pair
+    freqs = 1.0 / (theta ** (torch.arange(0, head_dim, 2, device=device).float() / head_dim))
+    # Compute position indices
+    t = torch.arange(max_seq_len, device=device)
+    # Outer product to get (seq_len, head_dim // 2)
+    freqs = torch.outer(t, freqs)
+    # Compute cos and sin
+    cos = torch.cos(freqs)  # (seq_len, head_dim // 2)
+    sin = torch.sin(freqs)  # (seq_len, head_dim // 2)
+    return cos, sin
+
+def apply_rotary_emb(x, cos, sin):
+    """
+    Apply rotary positional embeddings to x.
+    
+    Args:
+        x: (B, n_heads, T, head_dim)
+        cos: (max_seq_len, head_dim // 2)
+        sin: (max_seq_len, head_dim // 2)
+    
+    Returns:
+        rotated x with same shape
+    """
+    T = x.shape[2]
+    head_dim = x.shape[-1]
+    
+    # Get the cos/sin for the current sequence length
+    cos = cos[:T]  # (T, head_dim // 2)
+    sin = sin[:T]  # (T, head_dim // 2)
+    
+    # Split x into two halves along head_dim
+    x1 = x[..., : head_dim // 2]  # (B, n_heads, T, head_dim // 2)
+    x2 = x[..., head_dim // 2 :]  # (B, n_heads, T, head_dim // 2)
+    
+    # Reshape cos/sin for broadcasting: (1, 1, T, head_dim // 2)
+    cos = cos.unsqueeze(0).unsqueeze(0)
+    sin = sin.unsqueeze(0).unsqueeze(0)
+    
+    # Apply rotation: [x1, x2] -> [x1*cos - x2*sin, x1*sin + x2*cos]
+    rotated = torch.cat([
+        x1 * cos - x2 * sin,
+        x1 * sin + x2 * cos
+    ], dim=-1)
+    
+    return rotated.type_as(x)
+
 class MLP(nn.Module):
     def __init__(self, config):
         super().__init__()
@@ -18,11 +67,17 @@ class CasualSelfAttention(nn.Module):
         super().__init__()
         self.n_embd = config.n_embd
         self.n_heads = config.n_heads
+        self.head_dim = config.n_embd // config.n_heads
         self.block_size = config.block_size # Store block_size
         self.c_attn = nn.Linear(config.n_embd, 3 * config.n_embd)
         self.c_proj = nn.Linear(config.n_embd, config.n_embd)
         # Removed bias registration
         self.c_proj.NANOGPT_SCALE_INIT = True
+        
+        # Precompute RoPE frequencies
+        cos, sin = precompute_rope_freqs(self.head_dim, config.block_size)
+        self.register_buffer('rope_cos', cos)
+        self.register_buffer('rope_sin', sin)
 
     def forward(self, x, last_k_no_attend=0, window_size=0):
         B, T, C = x.size()
@@ -31,6 +86,11 @@ class CasualSelfAttention(nn.Module):
         q = q.view(B, T, self.n_heads, C // self.n_heads).transpose(1,2)
         k = k.view(B, T, self.n_heads, C // self.n_heads).transpose(1,2)
         v = v.view(B, T, self.n_heads, C // self.n_heads).transpose(1,2)
+        
+        # Apply RoPE to q and k
+        q = apply_rotary_emb(q, self.rope_cos, self.rope_sin)
+        k = apply_rotary_emb(k, self.rope_cos, self.rope_sin)
+        
         attn = q @ k.transpose(-1,-2) * (k.size(-1)) ** -0.5
         # Create bias mask directly in forward and ensure it's on the correct device
         bias = torch.tril(torch.ones(T, T, device=x.device)).view(1, 1, T, T)
@@ -69,11 +129,23 @@ class GPT(nn.Module):
         self.n_layers = config.n_layers
         self.transformer = nn.ModuleDict(dict(
             wte = nn.Embedding(config.vocab_size, config.n_embd),
-            wpe = nn.Embedding(config.block_size, config.n_embd),
+            # No wpe needed - using RoPE for positional encoding
             h = nn.ModuleList([Block(config) for _ in range(config.n_layers)]),
             ln_f = nn.LayerNorm(config.n_embd)
         ))
-        self.linear_head = nn.Linear(config.n_embd, 1, bias=False)
+        
+        # Create linear head(s)
+        self.separate_heads = getattr(config, 'separate_heads', False)
+        if self.separate_heads:
+            # Create a separate linear head for each number of CoT tokens (0 to cot_length)
+            # Index i corresponds to using i CoT tokens
+            self.linear_heads = nn.ModuleList([
+                nn.Linear(config.n_embd, 1, bias=False) 
+                for _ in range(config.cot_length + 1)
+            ])
+        else:
+            self.linear_head = nn.Linear(config.n_embd, 1, bias=False)
+        
         # Special embedding vector added at the end of cot_tokens to produce final output
         self.special_embedding = nn.Parameter(torch.randn(config.n_embd) * 0.08)  # 4x larger std
         self.apply(self._init_weights)
@@ -94,6 +166,7 @@ class GPT(nn.Module):
     def forward_with_hidden(self, idx, cot_embeddings):
         """
         Forward pass that returns the last hidden embedding.
+        Uses RoPE for positional encoding (applied in attention layers).
         
         Args:
             idx: input token indices (B, input_length)
@@ -107,12 +180,10 @@ class GPT(nn.Module):
         T = input_length + num_cot
         assert T <= self.config.block_size, "Block size is too small"
         
-        pe = torch.arange(0, T, dtype=torch.long, device=idx.device)
-        pe_vecs = self.transformer.wpe(pe)
-        
-        # Concatenate input embeddings with cot embeddings
+        # Concatenate input embeddings with cot embeddings (no additive positional embedding)
+        # RoPE handles positional information in the attention layers
         input_embeds = self.transformer.wte(idx)  # (B, input_length, n_embd)
-        x = pe_vecs + torch.cat([input_embeds, cot_embeddings], dim=1)
+        x = torch.cat([input_embeds, cot_embeddings], dim=1)
         
         for block in self.transformer.h:
             x = block(x)
@@ -123,18 +194,13 @@ class GPT(nn.Module):
         B, input_length = idx.size()
         T = input_length + cts_tokens.size(1)
         assert T <= self.config.block_size, "Block size is too small"
-        pe = torch.arange(0, T, dtype=torch.long, device=idx.device) # Ensure pe is on the same device as idx
-        pe_vecs = self.transformer.wpe(pe)
         
-
-        #print( 'shape of self.transformer.wte(idx)', self.transformer.wte(idx).type(), ' shape of cts_tokens', cts_tokens.type())
-        #print( 'shape of self.transformer.wte(idx)', self.transformer.wte(self.const_dir_idx).shape, ' shape of cts_tokens', cts_tokens.shape)
-        x = pe_vecs + torch.cat([self.transformer.wte(idx), cts_tokens.unsqueeze(2) @ self.transformer.wte(self.const_dir_idx).unsqueeze(0).unsqueeze(0)], dim=1)
+        # No additive positional embeddings - RoPE handles positions in attention
+        x = torch.cat([self.transformer.wte(idx), cts_tokens.unsqueeze(2) @ self.transformer.wte(self.const_dir_idx).unsqueeze(0).unsqueeze(0)], dim=1)
         for block in self.transformer.h:
             x = block(x)
         x = self.transformer.ln_f(x)
         output_vals = self.linear_head(x[:, input_length - 1:-1]).squeeze(-1)
-        #print( 'shape of output_vals', output_vals.shape, 'shape of cts_tokens', cts_tokens.shape)
         loss = F.mse_loss(output_vals[:, :], cts_tokens[:, :])
         return output_vals, loss
 
@@ -153,11 +219,24 @@ class GPT(nn.Module):
         """
         B, input_length = idx.size()
         
+        # Get truncated backprop settings from config
+        truncate_backprop = getattr(self.config, 'truncate_backprop', False)
+        backprop_steps = getattr(self.config, 'backprop_steps', num_cot_tokens + 1)
+        
         # Initialize cot_embeddings as empty
         cot_embeddings = torch.empty(B, 0, self.config.n_embd, device=idx.device)
         
+        # Total forward passes = num_cot_tokens + 1 (including final pass)
+        # If truncate_backprop is enabled, only backprop through last backprop_steps passes
+        # Detach at iteration i if i < (num_cot_tokens + 1 - backprop_steps)
+        detach_until = num_cot_tokens + 1 - backprop_steps if truncate_backprop else 0
+        
         # Generate cot tokens autoregressively
-        for _ in range(num_cot_tokens):
+        for i in range(num_cot_tokens):
+            # Truncate backprop: detach cot_embeddings if we're before the backprop window
+            if truncate_backprop and i < detach_until:
+                cot_embeddings = cot_embeddings.detach()
+            
             # Use special_embedding as the placeholder for the next token position
             special_emb = self.special_embedding.unsqueeze(0).unsqueeze(0).expand(B, 1, -1)  # (B, 1, n_embd)
             current_cot = torch.cat([cot_embeddings, special_emb], dim=1)
@@ -171,6 +250,10 @@ class GPT(nn.Module):
             # Append to cot_embeddings
             cot_embeddings = torch.cat([cot_embeddings, next_cot_token], dim=1)
         
+        # Detach before final pass if needed
+        if truncate_backprop and num_cot_tokens < detach_until:
+            cot_embeddings = cot_embeddings.detach()
+        
         # Append special embedding at the end
         special_emb = self.special_embedding.unsqueeze(0).unsqueeze(0).expand(B, 1, -1)  # (B, 1, n_embd)
         final_cot = torch.cat([cot_embeddings, special_emb], dim=1)
@@ -182,7 +265,11 @@ class GPT(nn.Module):
         special_hidden = hidden_states[:, -1, :]  # (B, n_embd)
         
         # Apply linear head to get final output
-        output = self.linear_head(special_hidden).squeeze(-1)  # (B,)
+        if self.separate_heads:
+            # Use the linear head corresponding to num_cot_tokens
+            output = self.linear_heads[num_cot_tokens](special_hidden).squeeze(-1)  # (B,)
+        else:
+            output = self.linear_head(special_hidden).squeeze(-1)  # (B,)
         
         # Compute loss if target is provided
         loss = None
@@ -199,8 +286,12 @@ class GPTConfig():
     n_embd = 64
     dropout = 0.01
     cot_length = 0
+    separate_heads = False
+    truncate_backprop = False
+    backprop_steps = 1
 
-    def __init__(self, block_size, vocab_size, n_layers, n_heads, n_embd, dropout, cot_length):
+    def __init__(self, block_size, vocab_size, n_layers, n_heads, n_embd, dropout, cot_length, 
+                 separate_heads=False, truncate_backprop=False, backprop_steps=1):
         super().__init__()
         self.block_size = block_size
         self.vocab_size = vocab_size
@@ -209,4 +300,7 @@ class GPTConfig():
         self.n_embd = n_embd
         self.dropout = dropout
         self.cot_length = cot_length
+        self.separate_heads = separate_heads
+        self.truncate_backprop = truncate_backprop
+        self.backprop_steps = backprop_steps
 
