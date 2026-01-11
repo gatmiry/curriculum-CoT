@@ -5,8 +5,34 @@ from model import GPT, GPTConfig
 import numpy as np
 import argparse
 from tqdm import tqdm
+import wandb
+import os
+import json
+import matplotlib.pyplot as plt
+from datetime import datetime
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+def wandb_login():
+    """Login to wandb using API key from .wandb_key file."""
+    # Look for .wandb_key in the same directory as this script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    key_file = os.path.join(script_dir, '.wandb_key')
+    
+    if os.path.exists(key_file):
+        with open(key_file, 'r') as f:
+            lines = f.readlines()
+            # Skip comment lines and get the API key
+            for line in lines:
+                line = line.strip()
+                if line and not line.startswith('#'):
+                    api_key = line
+                    wandb.login(key=api_key)
+                    print("Logged in to wandb using .wandb_key file")
+                    return True
+    
+    print("Warning: .wandb_key file not found or empty. Using default wandb authentication.")
+    return False
 
 def generate_all_inputs(n_bits, max_samples=None):
     """
@@ -95,7 +121,7 @@ def sample_batch(all_inputs, batch_size):
 
 def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens, 
                 max_iterations, batch_size, n_bits, eval_interval=100, target_loss=0.2,
-                multilevel_training=False, subset_indices=None):
+                multilevel_training=False, subset_indices=None, global_step=0, training_history=None):
     """
     Train the model for a single phase until loss drops below target_loss.
     
@@ -113,12 +139,20 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
         multilevel_training: if True, randomly sample i from 1 to phase and train on
                             parity of first i bits with i CoT tokens
         subset_indices: optional list of bit indices to use for parity (random subset mode)
+        global_step: global step counter across all phases (for wandb logging)
+        training_history: list to append training metrics to (for plotting)
+    
+    Returns:
+        eval_loss, accuracy, iter_num, updated global_step
     """
     model.train()
     
     iter_num = 0
     eval_loss = float('inf')
     use_random_sampling = n_bits > 16  # For large n_bits, sample random batches
+    
+    # Track train loss over eval_interval
+    train_losses = []
     
     pbar = tqdm(total=max_iterations, desc=f"Phase {phase}")
     
@@ -149,13 +183,39 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
         loss.backward()
         optimizer.step()
         
+        train_losses.append(loss.item())
+        
         pbar.set_postfix({'loss': f'{loss.item():.4f}', 'eval_loss': f'{eval_loss:.4f}'})
         pbar.update(1)
         
         # Evaluate on full dataset periodically (always evaluate on the current phase target)
         if (iter_num + 1) % eval_interval == 0:
             eval_loss, accuracy = evaluate(model, all_inputs, phase, num_cot_tokens, show_examples=6, subset_indices=subset_indices)
-            print(f"  Phase {phase}, Iter {iter_num + 1}: Eval Loss = {eval_loss:.4f}, Accuracy = {accuracy:.2%}")
+            
+            # Compute average train loss over the interval
+            avg_train_loss = sum(train_losses) / len(train_losses)
+            train_losses = []  # Reset for next interval
+            
+            # Log to wandb
+            wandb.log({
+                "train_loss": avg_train_loss,
+                "eval_loss": eval_loss,
+                "phase": phase,
+                "accuracy": accuracy,
+                "iteration": global_step + iter_num + 1
+            })
+            
+            # Save to training history for local plotting
+            if training_history is not None:
+                training_history.append({
+                    "iteration": global_step + iter_num + 1,
+                    "train_loss": avg_train_loss,
+                    "eval_loss": eval_loss,
+                    "phase": phase,
+                    "accuracy": accuracy
+                })
+            
+            print(f"  Phase {phase}, Iter {iter_num + 1}: Train Loss = {avg_train_loss:.4f}, Eval Loss = {eval_loss:.4f}, Accuracy = {accuracy:.2%}")
             model.train()
             
             if eval_loss <= target_loss:
@@ -170,7 +230,7 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
     eval_loss, accuracy = evaluate(model, all_inputs, phase, num_cot_tokens, show_examples=8, subset_indices=subset_indices)
     print(f"Phase {phase} Complete: Final Loss = {eval_loss:.4f}, Accuracy = {accuracy:.2%} (after {iter_num} iterations)\n")
     
-    return eval_loss, accuracy, iter_num
+    return eval_loss, accuracy, iter_num, global_step + iter_num
 
 def bits_to_str(bits, k=None):
     """Convert bits tensor to readable string. Highlight first k bits if specified."""
@@ -265,6 +325,98 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, show_examples=0, eval_bat
     
     return loss, accuracy
 
+def plot_training_curves(training_history, args, save_path='training_curves.png'):
+    """
+    Plot training curves from the collected training history.
+    
+    Args:
+        training_history: list of dicts with keys: iteration, train_loss, eval_loss, phase, accuracy
+        args: command line arguments (for title info)
+        save_path: path to save the plot
+    """
+    if not training_history:
+        print("No training history to plot.")
+        return
+    
+    iterations = [h['iteration'] for h in training_history]
+    train_losses = [h['train_loss'] for h in training_history]
+    eval_losses = [h['eval_loss'] for h in training_history]
+    accuracies = [h['accuracy'] for h in training_history]
+    phases = [h['phase'] for h in training_history]
+    
+    # Create figure with 3 subplots
+    fig, axes = plt.subplots(3, 1, figsize=(12, 10), sharex=True)
+    
+    # Plot 1: Train and Eval Loss
+    ax1 = axes[0]
+    ax1.plot(iterations, train_losses, 'b-', linewidth=1.5, label='Train Loss', alpha=0.8)
+    ax1.plot(iterations, eval_losses, 'r-', linewidth=1.5, label='Eval Loss', alpha=0.8)
+    ax1.set_ylabel('Loss (MSE)', fontsize=12)
+    ax1.set_title('Training and Evaluation Loss over Time', fontsize=14, fontweight='bold')
+    ax1.legend(loc='upper right', fontsize=10)
+    ax1.grid(True, alpha=0.3)
+    ax1.set_yscale('log')
+    
+    # Add phase transition markers
+    phase_changes = [iterations[0]]
+    for i in range(1, len(phases)):
+        if phases[i] != phases[i-1]:
+            phase_changes.append(iterations[i])
+    for pc in phase_changes[1:]:
+        ax1.axvline(x=pc, color='gray', linestyle='--', alpha=0.5)
+    
+    # Plot 2: Accuracy
+    ax2 = axes[1]
+    ax2.plot(iterations, accuracies, 'g-', linewidth=1.5, label='Accuracy', alpha=0.8)
+    ax2.set_ylabel('Accuracy', fontsize=12)
+    ax2.set_title('Evaluation Accuracy over Time', fontsize=14, fontweight='bold')
+    ax2.legend(loc='lower right', fontsize=10)
+    ax2.grid(True, alpha=0.3)
+    ax2.set_ylim(0, 1.05)
+    ax2.axhline(y=1.0, color='gray', linestyle=':', alpha=0.5)
+    
+    # Add phase transition markers
+    for pc in phase_changes[1:]:
+        ax2.axvline(x=pc, color='gray', linestyle='--', alpha=0.5)
+    
+    # Plot 3: Phase
+    ax3 = axes[2]
+    ax3.plot(iterations, phases, 'm-', linewidth=2, label='Training Phase', alpha=0.8)
+    ax3.set_xlabel('Iteration', fontsize=12)
+    ax3.set_ylabel('Phase', fontsize=12)
+    ax3.set_title('Training Phase over Time', fontsize=14, fontweight='bold')
+    ax3.legend(loc='upper left', fontsize=10)
+    ax3.grid(True, alpha=0.3)
+    ax3.set_yticks(range(1, max(phases) + 1))
+    
+    # Overall title
+    fig.suptitle(f'Curriculum CoT Training: {args.n_bits} bits, {args.n_layers} layers, lr={args.lr}',
+                 fontsize=16, fontweight='bold', y=1.02)
+    
+    plt.tight_layout()
+    plt.savefig(save_path, dpi=150, bbox_inches='tight')
+    print(f"\nTraining curves saved to {save_path}")
+    plt.close()
+
+def save_training_data(training_history, results, args, save_path='training_data.json'):
+    """
+    Save training history and results to JSON file for later analysis.
+    
+    Args:
+        training_history: list of training metrics over time
+        results: final results per phase
+        args: command line arguments
+        save_path: path to save the JSON file
+    """
+    data = {
+        'config': vars(args),
+        'training_history': training_history,
+        'phase_results': results
+    }
+    with open(save_path, 'w') as f:
+        json.dump(data, f, indent=2)
+    print(f"Training data saved to {save_path}")
+
 def main():
     parser = argparse.ArgumentParser(description='Train parity function with curriculum CoT learning')
     parser.add_argument('--n_bits', type=int, default=20, help='Number of input bits')
@@ -277,9 +429,9 @@ def main():
     parser.add_argument('--lr', type=float, default=1e-5, help='Learning rate')
     parser.add_argument('--eval_interval', type=int, default=200, help='Evaluation interval')
     parser.add_argument('--target_loss', type=float, default=0.2, help='Target loss to stop each phase')
-    parser.add_argument('--multilevel', action='store_true', default=False, help='Enable multilevel training (train on parity of 1 to phase bits)')
+    parser.add_argument('--multilevel', action='store_true', default=True, help='Enable multilevel training (train on parity of 1 to phase bits)')
     parser.add_argument('--separate_heads', action='store_true', default=True, help='Use separate linear head for each number of CoT tokens')
-    parser.add_argument('--truncate_backprop', action='store_true', default=False, help='Enable truncated backprop through only last r forward passes')
+    parser.add_argument('--truncate_backprop', action='store_true', default=True, help='Enable truncated backprop through only last r forward passes')
     parser.add_argument('--backprop_steps', type=int, default=1, help='Number of last forward passes to backprop through (r)')
     parser.add_argument('--random_subset', action='store_true', default=True, help='Use random subset of bits for parity instead of first k bits')
     parser.add_argument('--seed', type=int, default=54, help='Random seed')
@@ -293,6 +445,29 @@ def main():
     # Set random seed
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)
+    
+    # Login and initialize wandb
+    wandb_login()
+    wandb.init(
+        project="curriculum-cot-parity",
+        config={
+            "n_bits": args.n_bits,
+            "k_phases": args.k_phases,
+            "n_layers": args.n_layers,
+            "n_heads": args.n_heads,
+            "n_embd": args.n_embd,
+            "batch_size": args.batch_size,
+            "lr": args.lr,
+            "iterations_per_phase": args.iterations_per_phase,
+            "target_loss": args.target_loss,
+            "multilevel": args.multilevel,
+            "separate_heads": args.separate_heads,
+            "truncate_backprop": args.truncate_backprop,
+            "backprop_steps": args.backprop_steps,
+            "random_subset": args.random_subset,
+            "seed": args.seed,
+        }
+    )
     
     print(f"Training parity function on {args.n_bits} bits with {args.n_bits} phases")
     print(f"Device: {device}")
@@ -348,6 +523,8 @@ def main():
     
     # Training phases (number of phases = n_bits)
     results = []
+    training_history = []  # Collect metrics for plotting
+    global_step = 0
     
     for phase in range(1, args.n_bits + 1):
         print(f"{'='*60}")
@@ -358,19 +535,21 @@ def main():
         print(f"{'='*60}")
         
         # Train this phase until loss < target_loss
-        loss, accuracy, iterations = train_phase(
+        loss, accuracy, iterations, global_step = train_phase(
             model=model,
             optimizer=optimizer,
             all_inputs=all_inputs,
             phase=phase,
-            num_cot_tokens=1,  # num_cot_tokens equals phase number
+            num_cot_tokens=phase,  # num_cot_tokens equals phase number
             max_iterations=args.iterations_per_phase,
             batch_size=args.batch_size,
             n_bits=args.n_bits,
             eval_interval=args.eval_interval,
             target_loss=args.target_loss,
             multilevel_training=args.multilevel,
-            subset_indices=subset_indices
+            subset_indices=subset_indices,
+            global_step=global_step,
+            training_history=training_history
         )
         
         results.append({
@@ -403,14 +582,34 @@ def main():
         else:
             print(f"Phase {phase} (parity of first {phase} bits, {phase} CoT tokens): Loss = {loss:.4f}, Accuracy = {accuracy:.2%}\n")
     
+    # Create output folders
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    plots_dir = os.path.join(script_dir, 'plots')
+    plot_data_dir = os.path.join(script_dir, 'plot_data')
+    os.makedirs(plots_dir, exist_ok=True)
+    os.makedirs(plot_data_dir, exist_ok=True)
+    
+    # Generate timestamp for filenames
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    
+    # Plot training curves
+    plot_training_curves(training_history, args, save_path=os.path.join(plots_dir, f'training_curves_{timestamp}.png'))
+    
+    # Save training data to JSON
+    save_training_data(training_history, results, args, save_path=os.path.join(plot_data_dir, f'training_data_{timestamp}.json'))
+    
     # Save model
     torch.save({
         'model_state_dict': model.state_dict(),
         'config': config,
         'results': results,
+        'training_history': training_history,
         'args': args
     }, 'parity_model.pt')
     print("\nModel saved to parity_model.pt")
+    
+    # Finish wandb run
+    wandb.finish()
 
 if __name__ == '__main__':
     main()
