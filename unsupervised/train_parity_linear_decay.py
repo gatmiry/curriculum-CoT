@@ -119,9 +119,10 @@ def sample_batch(all_inputs, batch_size):
     indices = torch.randint(0, num_samples, (batch_size,), device=all_inputs.device)
     return all_inputs[indices]
 
-def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens, 
+def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                 max_iterations, batch_size, n_bits, eval_interval=100, target_loss=0.2,
-                multilevel_training=False, subset_indices=None, global_step=0, training_history=None, remember_rate=0.5):
+                multilevel_training=False, subset_indices=None, global_step=0, training_history=None,
+                remember_rate=0.5, detect_threshold=0.2):
     """
     Train the model for a single phase until loss drops below target_loss.
     
@@ -150,6 +151,7 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
     iter_num = 0
     eval_loss = float('inf')
     use_random_sampling = n_bits > 16  # For large n_bits, sample random batches
+    r_current = 1  # Updated at each evaluation based on detect_threshold
     
     # Track train loss over eval_interval
     train_losses = []
@@ -169,7 +171,8 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
             if remember_rate > random.random():
                 i = np.random.randint(1, phase)
             else:
-                i = phase
+                r_floor = max(1, min(r_current, phase))
+                i = np.random.randint(r_floor, phase + 1)
             # Compute target parity (use same subset_indices for all levels)
             target = compute_parity(batch, i, indices=subset_indices)
             # Use i CoT tokens
@@ -194,7 +197,15 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
         
         # Evaluate on full dataset periodically (always evaluate on the current phase target)
         if (iter_num + 1) % eval_interval == 0:
-            eval_loss, accuracy = evaluate(model, all_inputs, phase, num_cot_tokens, show_examples=6, subset_indices=subset_indices)
+            eval_loss, accuracy, r_current = evaluate(
+                model,
+                all_inputs,
+                phase,
+                num_cot_tokens,
+                detect_threshold=detect_threshold,
+                show_examples=6,
+                subset_indices=subset_indices
+            )
             
             # Compute average train loss over the interval
             avg_train_loss = sum(train_losses) / len(train_losses)
@@ -206,6 +217,7 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                 "eval_loss": eval_loss,
                 "phase": phase,
                 "accuracy": accuracy,
+                "r": r_current,
                 "iteration": global_step + iter_num + 1
             })
             
@@ -216,10 +228,11 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                     "train_loss": avg_train_loss,
                     "eval_loss": eval_loss,
                     "phase": phase,
-                    "accuracy": accuracy
+                    "accuracy": accuracy,
+                    "r": r_current
                 })
             
-            print(f"  Phase {phase}, Iter {iter_num + 1}: Train Loss = {avg_train_loss:.4f}, Eval Loss = {eval_loss:.4f}, Accuracy = {accuracy:.2%}")
+            print(f"  Phase {phase}, Iter {iter_num + 1}: Train Loss = {avg_train_loss:.4f}, Eval Loss = {eval_loss:.4f}, Accuracy = {accuracy:.2%}, r = {r_current}")
             model.train()
             
             if eval_loss <= target_loss:
@@ -231,7 +244,15 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
     pbar.close()
     
     # Final evaluation with examples
-    eval_loss, accuracy = evaluate(model, all_inputs, phase, num_cot_tokens, show_examples=8, subset_indices=subset_indices)
+    eval_loss, accuracy, _ = evaluate(
+        model,
+        all_inputs,
+        phase,
+        num_cot_tokens,
+        detect_threshold=detect_threshold,
+        show_examples=8,
+        subset_indices=subset_indices
+    )
     print(f"Phase {phase} Complete: Final Loss = {eval_loss:.4f}, Accuracy = {accuracy:.2%} (after {iter_num} iterations)\n")
     
     return eval_loss, accuracy, iter_num, global_step + iter_num
@@ -247,7 +268,7 @@ def bits_to_str(bits, k=None):
     return ''.join(['+' if b == 1 else '-' for b in bits_list])
 
 @torch.no_grad()
-def evaluate(model, all_inputs, phase, num_cot_tokens, show_examples=0, eval_batch_size=1024, subset_indices=None):
+def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, show_examples=0, eval_batch_size=1024, subset_indices=None):
     """Evaluate model on the full dataset in batches to save memory.
     
     Args:
@@ -261,30 +282,43 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, show_examples=0, eval_bat
     """
     model.eval()
     
-    # Compute targets
-    targets = compute_parity(all_inputs, phase, indices=subset_indices)
-    
-    # Forward pass in batches to save memory
+    losses_by_cot = {}
+    outputs_phase = None
+    targets_phase = None
     num_samples = all_inputs.size(0)
-    all_outputs = []
-    total_loss = 0.0
-    num_batches = 0
     
-    for i in range(0, num_samples, eval_batch_size):
-        batch_inputs = all_inputs[i:i+eval_batch_size]
-        batch_targets = targets[i:i+eval_batch_size]
+    for cot_tokens in range(1, phase + 1):
+        targets = compute_parity(all_inputs, cot_tokens, indices=subset_indices)
+        all_outputs = [] if cot_tokens == phase else None
+        total_loss = 0.0
+        num_batches = 0
         
-        outputs, loss = model.generate(batch_inputs, num_cot_tokens=num_cot_tokens, target=batch_targets)
-        all_outputs.append(outputs)
-        total_loss += loss.item()
-        num_batches += 1
+        for i in range(0, num_samples, eval_batch_size):
+            batch_inputs = all_inputs[i:i+eval_batch_size]
+            batch_targets = targets[i:i+eval_batch_size]
+            
+            outputs, loss = model.generate(batch_inputs, num_cot_tokens=cot_tokens, target=batch_targets)
+            if cot_tokens == phase:
+                all_outputs.append(outputs)
+            total_loss += loss.item()
+            num_batches += 1
+        
+        losses_by_cot[cot_tokens] = total_loss / num_batches
+        if cot_tokens == phase:
+            outputs_phase = torch.cat(all_outputs, dim=0)
+            targets_phase = targets
     
-    outputs = torch.cat(all_outputs, dim=0)
-    loss = total_loss / num_batches
+    loss = losses_by_cot[phase]
     
     # Compute accuracy (output should be close to +1 or -1)
-    predictions = torch.sign(outputs)
-    accuracy = (predictions == targets).float().mean().item()
+    predictions = torch.sign(outputs_phase)
+    accuracy = (predictions == targets_phase).float().mean().item()
+    
+    r = phase
+    for cot_tokens in range(1, phase + 1):
+        if losses_by_cot[cot_tokens] > detect_threshold:
+            r = cot_tokens
+            break
     
     # Show some examples
     if show_examples > 0:
@@ -293,7 +327,7 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, show_examples=0, eval_bat
         print(f"  {'-'*54}")
         
         # Show a mix of correct and incorrect predictions
-        correct_mask = (predictions == targets)
+        correct_mask = (predictions == targets_phase)
         incorrect_indices = torch.where(~correct_mask)[0]
         correct_indices = torch.where(correct_mask)[0]
         
@@ -315,8 +349,8 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, show_examples=0, eval_bat
         
         for idx in sample_indices:
             inp = all_inputs[idx]
-            tgt = targets[idx].item()
-            out = outputs[idx].item()
+            tgt = targets_phase[idx].item()
+            out = outputs_phase[idx].item()
             pred = predictions[idx].item()
             correct = "✓" if pred == tgt else "✗"
             
@@ -327,7 +361,7 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, show_examples=0, eval_bat
             
             print(f"  {inp_str:<20} {tgt_str:>8} {out_str:>10} {pred_str:>6} {correct:>8}")
     
-    return loss, accuracy
+    return loss, accuracy, r
 
 def plot_training_curves(training_history, args, save_path='training_curves.png'):
     """
@@ -440,6 +474,7 @@ def main():
     parser.add_argument('--random_subset', action='store_true', default=True, help='Use random subset of bits for parity instead of first k bits')
     parser.add_argument('--seed', type=int, default=54, help='Random seed')
     parser.add_argument('--remember_rate', type=float, default=0.5, help='Rate at which to remember the previous phases')
+    parser.add_argument('--detect_threshold', type=float, default=0.2, help='Loss threshold used to compute r during evaluation')
     parser.add_argument('--plots_dir', type=str, default='plots', help='Directory for saving plots')
     parser.add_argument('--plot_data_dir', type=str, default='plot_data', help='Directory for saving plot data')
 
@@ -473,6 +508,7 @@ def main():
             "backprop_steps": args.backprop_steps,
             "random_subset": args.random_subset,
             "seed": args.seed,
+            "detect_threshold": args.detect_threshold,
         }
     )
     
@@ -557,7 +593,8 @@ def main():
             subset_indices=subset_indices,
             global_step=global_step,
             training_history=training_history,
-            remember_rate=args.remember_rate
+            remember_rate=args.remember_rate,
+            detect_threshold=args.detect_threshold
         )
         
         results.append({
