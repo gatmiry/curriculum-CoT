@@ -62,56 +62,68 @@ def sample_random_batch(n_bits, batch_size):
     """Generate a random batch of inputs (for large n_bits where we can't store all)."""
     return torch.randint(0, 2, (batch_size, n_bits), dtype=torch.long, device=device)
 
-def compute_parity(inputs, k, indices=None):
+def compute_parity(inputs, k, subset_indices_arr=None, coefficients=None):
     """
     Compute parity of bits for each input.
     
     Args:
         inputs: (B, n_bits) tensor of 0/1 values
         k: number of bits to consider (first k bit positions)
-        indices: optional list of bit indices for random subset mode
-                 If provided, computes parity over intersection of indices and first k bits
+        subset_indices_arr: list of index lists, each defining a parity subset
+        coefficients: list of real coefficients for each subset
     
     Parity is the product of selected bits (treating 0 as -1, 1 as +1).
-    Returns +1 or -1.
+    For each subset, use only indices < k (assume 1 for the rest),
+    then sum parities weighted by coefficients.
     """
-    if indices is not None:
-        # Intersect indices with first k bits (indices that are < k)
-        valid_indices = [i for i in indices if i < k]
-        if len(valid_indices) == 0:
-            return torch.ones(inputs.size(0), device=inputs.device)
-        selected = inputs[:, valid_indices]  # (B, len(valid_indices))
-    else:
-        # Use first k bits
-        if k == 0:
-            return torch.ones(inputs.size(0), device=inputs.device)
-        selected = inputs[:, :k]  # (B, k)
-    
-    # Convert 0/1 to -1/+1
-    signs = 2 * selected.float() - 1
-    # Parity is the product
-    parity = signs.prod(dim=1)  # (B,)
-    return parity
+    if k == 0:
+        return torch.ones(inputs.size(0), device=inputs.device)
 
-def generate_random_subset(n_bits, subset_size, seed=None):
+    if subset_indices_arr is None or len(subset_indices_arr) == 0:
+        subset_indices_arr = [list(range(k))]
+    if coefficients is None or len(coefficients) == 0:
+        coefficients = [1.0] * len(subset_indices_arr)
+
+    if len(coefficients) != len(subset_indices_arr):
+        raise ValueError("coefficients must have the same length as subset_indices_arr")
+
+    result = torch.zeros(inputs.size(0), device=inputs.device)
+    for subset_indices, coeff in zip(subset_indices_arr, coefficients):
+        valid_indices = [i for i in subset_indices if i < k]
+        if len(valid_indices) == 0:
+            parity = torch.ones(inputs.size(0), device=inputs.device)
+        else:
+            selected = inputs[:, valid_indices]  # (B, len(valid_indices))
+            signs = 2 * selected.float() - 1
+            parity = signs.prod(dim=1)  # (B,)
+        result += float(coeff) * parity
+
+    return result
+
+def generate_random_subsets(n_bits, max_subset_size, num_subsets, seed=None):
     """
-    Generate a single random subset of indices.
-    All phases will use this same subset for computing parity.
+    Generate multiple random subsets of indices.
+    All phases will use these same subsets for computing parity.
     
     Args:
         n_bits: total number of bits
-        subset_size: size of the subset to generate
+        max_subset_size: maximum size of each subset
+        num_subsets: number of subsets to generate
         seed: random seed for reproducibility
     
     Returns:
-        list of indices (sorted)
+        list of index lists (each sorted)
     """
     if seed is not None:
         np.random.seed(seed)
     
-    # Randomly select `subset_size` indices from 0 to n_bits-1
-    indices = np.random.choice(n_bits, size=subset_size, replace=False).tolist()
-    return sorted(indices)
+    max_subset_size = max(1, min(max_subset_size, n_bits))
+    subsets = []
+    for _ in range(num_subsets):
+        subset_size = np.random.randint(1, max_subset_size + 1)
+        indices = np.random.choice(n_bits, size=subset_size, replace=False).tolist()
+        subsets.append(sorted(indices))
+    return subsets
 
 def sample_batch(all_inputs, batch_size):
     """Sample a random batch from all inputs."""
@@ -121,7 +133,7 @@ def sample_batch(all_inputs, batch_size):
 
 def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                 max_iterations, batch_size, n_bits, eval_interval=100, target_loss=0.2,
-                multilevel_training=False, subset_indices=None, global_step=0, training_history=None,
+                multilevel_training=False, subset_indices_arr=None, coefficients=None, global_step=0, training_history=None,
                 remember_rate=0.5, detect_threshold=0.2):
     """
     Train the model for a single phase until loss drops below target_loss.
@@ -139,7 +151,8 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
         target_loss: stop training when eval loss drops below this value
         multilevel_training: if True, randomly sample i from 1 to phase and train on
                             parity of first i bits with i CoT tokens
-        subset_indices: optional list of bit indices to use for parity (random subset mode)
+        subset_indices_arr: list of bit-index subsets to use for parity (Fourier terms)
+        coefficients: coefficients for each subset
         global_step: global step counter across all phases (for wandb logging)
         training_history: list to append training metrics to (for plotting)
     
@@ -174,12 +187,12 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                 r_floor = max(1, min(r_current, phase))
                 i = np.random.randint(r_floor, phase + 1)
             # Compute target parity (use same subset_indices for all levels)
-            target = compute_parity(batch, i, indices=subset_indices)
+            target = compute_parity(batch, i, subset_indices_arr=subset_indices_arr, coefficients=coefficients)
             # Use i CoT tokens
             current_num_cot = i
         else:
             # Compute target parity for this phase
-            target = compute_parity(batch, phase, indices=subset_indices)
+            target = compute_parity(batch, phase, subset_indices_arr=subset_indices_arr, coefficients=coefficients)
             current_num_cot = num_cot_tokens
         
         # Forward pass through generate
@@ -204,7 +217,8 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                 num_cot_tokens,
                 detect_threshold=detect_threshold,
                 show_examples=6,
-                subset_indices=subset_indices
+                subset_indices_arr=subset_indices_arr,
+                coefficients=coefficients
             )
             
             # Compute average train loss over the interval
@@ -251,7 +265,8 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
         num_cot_tokens,
         detect_threshold=detect_threshold,
         show_examples=8,
-        subset_indices=subset_indices
+        subset_indices_arr=subset_indices_arr,
+        coefficients=coefficients
     )
     print(f"Phase {phase} Complete: Final Loss = {eval_loss:.4f}, Accuracy = {accuracy:.2%} (after {iter_num} iterations)\n")
     
@@ -268,7 +283,7 @@ def bits_to_str(bits, k=None):
     return ''.join(['+' if b == 1 else '-' for b in bits_list])
 
 @torch.no_grad()
-def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, show_examples=0, eval_batch_size=1024, subset_indices=None):
+def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, show_examples=0, eval_batch_size=1024, subset_indices_arr=None, coefficients=None):
     """Evaluate model on the full dataset in batches to save memory.
     
     Args:
@@ -278,7 +293,8 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, sho
         num_cot_tokens: number of cot tokens
         show_examples: number of examples to display (0 = none)
         eval_batch_size: batch size for evaluation (to avoid OOM)
-        subset_indices: optional list of bit indices for parity (random subset mode)
+        subset_indices_arr: list of bit-index subsets to use for parity (Fourier terms)
+        coefficients: coefficients for each subset
     """
     model.eval()
     
@@ -288,7 +304,7 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, sho
     num_samples = all_inputs.size(0)
     
     for cot_tokens in range(1, phase + 1):
-        targets = compute_parity(all_inputs, cot_tokens, indices=subset_indices)
+        targets = compute_parity(all_inputs, cot_tokens, subset_indices_arr=subset_indices_arr, coefficients=coefficients)
         all_outputs = [] if cot_tokens == phase else None
         total_loss = 0.0
         num_batches = 0
@@ -471,7 +487,8 @@ def main():
     parser.add_argument('--separate_heads', action='store_true', default=True, help='Use separate linear head for each number of CoT tokens')
     parser.add_argument('--truncate_backprop', action='store_true', default=True, help='Enable truncated backprop through only last r forward passes')
     parser.add_argument('--backprop_steps', type=int, default=1, help='Number of last forward passes to backprop through (r)')
-    parser.add_argument('--random_subset', action='store_true', default=True, help='Use random subset of bits for parity instead of first k bits')
+    parser.add_argument('--random_subset', action='store_true', default=True, help='Use random subsets for Fourier parity terms')
+    parser.add_argument('--fourier_num', type=int, default=5, help='Number of parity subsets (Fourier terms) to sample')
     parser.add_argument('--seed', type=int, default=54, help='Random seed')
     parser.add_argument('--remember_rate', type=float, default=0.2, help='Rate at which to remember the previous phases')
     parser.add_argument('--detect_threshold', type=float, default=0.2, help='Loss threshold used to compute r during evaluation')
@@ -507,6 +524,7 @@ def main():
             "truncate_backprop": args.truncate_backprop,
             "backprop_steps": args.backprop_steps,
             "random_subset": args.random_subset,
+            "fourier_num": args.fourier_num,
             "seed": args.seed,
             "detect_threshold": args.detect_threshold,
         }
@@ -555,14 +573,22 @@ def main():
         print(f"Total inputs (sampled for eval): {all_inputs.size(0)} (training uses fresh random samples)")
     print()
     
-    # Generate random subset if enabled (same subset used for ALL phases)
+    # Generate parity subsets and coefficients (same for ALL phases)
     if args.random_subset:
-        subset_indices = generate_random_subset(args.n_bits, args.k_phases, seed=args.seed)
-        print(f"Using RANDOM SUBSET for parity (same for all phases):")
-        print(f"  Parity bits: {subset_indices}")
+        subset_indices_arr = generate_random_subsets(
+            args.n_bits,
+            args.k_phases,
+            args.fourier_num,
+            seed=args.seed
+        )
+        coefficients = np.random.uniform(-1.0, 1.0, size=args.fourier_num).tolist()
+        print("Using RANDOM SUBSETS for parity (same for all phases):")
+        print(f"  Subset count: {len(subset_indices_arr)}")
+        print(f"  Coefficients: {coefficients}")
         print()
     else:
-        subset_indices = None
+        subset_indices_arr = [list(range(args.n_bits))]
+        coefficients = [1.0]
     
     # Training phases (number of phases = n_bits)
     results = []
@@ -572,7 +598,7 @@ def main():
     for phase in range(1, args.n_bits + 1):
         print(f"{'='*60}")
         if args.random_subset:
-            print(f"PHASE {phase}: Learning parity of bits {subset_indices} with {phase} CoT tokens")
+            print(f"PHASE {phase}: Learning Fourier parity with {phase} CoT tokens")
         else:
             print(f"PHASE {phase}: Learning parity of first {phase} bits with {phase} CoT tokens")
         print(f"{'='*60}")
@@ -590,7 +616,8 @@ def main():
             eval_interval=args.eval_interval,
             target_loss=args.target_loss,
             multilevel_training=args.multilevel,
-            subset_indices=subset_indices,
+            subset_indices_arr=subset_indices_arr,
+            coefficients=coefficients,
             global_step=global_step,
             training_history=training_history,
             remember_rate=args.remember_rate,
@@ -628,10 +655,11 @@ def main():
             num_cot_tokens=phase,
             detect_threshold=args.detect_threshold,
             show_examples=6,
-            subset_indices=subset_indices
+            subset_indices_arr=subset_indices_arr,
+            coefficients=coefficients
         )
         if args.random_subset:
-            print(f"Phase {phase} (parity of bits {subset_indices}, {phase} CoT tokens): Loss = {loss:.4f}, Accuracy = {accuracy:.2%}\n")
+            print(f"Phase {phase} (Fourier parity, {phase} CoT tokens): Loss = {loss:.4f}, Accuracy = {accuracy:.2%}\n")
         else:
             print(f"Phase {phase} (parity of first {phase} bits, {phase} CoT tokens): Loss = {loss:.4f}, Accuracy = {accuracy:.2%}\n")
     
