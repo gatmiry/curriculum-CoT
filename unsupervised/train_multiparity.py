@@ -246,7 +246,7 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                     "r": r_current
                 })
             
-            print(f"  Phase {phase}, Iter {iter_num + 1}: Train Loss = {avg_train_loss:.4f}, Eval Loss = {eval_loss:.4f}, Accuracy = {accuracy:.2%}, r = {r_current}")
+            print(f"  Phase {phase}, Iter {iter_num + 1}: Train Loss = {avg_train_loss:.4f}, Eval Loss = {eval_loss:.4f}, MSE = {accuracy:.4f}, r = {r_current}")
             model.train()
             
             if eval_loss <= target_loss:
@@ -268,7 +268,7 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
         subset_indices_arr=subset_indices_arr,
         coefficients=coefficients
     )
-    print(f"Phase {phase} Complete: Final Loss = {eval_loss:.4f}, Accuracy = {accuracy:.2%} (after {iter_num} iterations)\n")
+    print(f"Phase {phase} Complete: Final Loss = {eval_loss:.4f}, MSE = {accuracy:.4f} (after {iter_num} iterations)\n")
     
     return eval_loss, accuracy, iter_num, global_step + iter_num
 
@@ -326,9 +326,8 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, sho
     
     loss = losses_by_cot[phase]
     
-    # Compute accuracy (output should be close to +1 or -1)
-    predictions = torch.sign(outputs_phase)
-    accuracy = (predictions == targets_phase).float().mean().item()
+    # Use MSE as the accuracy indicator for real-valued targets
+    accuracy = loss
     
     r = phase
     for cot_tokens in range(1, phase + 1):
@@ -343,9 +342,9 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, sho
         print(f"  {'-'*54}")
         
         # Show a mix of correct and incorrect predictions
-        correct_mask = (predictions == targets_phase)
-        incorrect_indices = torch.where(~correct_mask)[0]
-        correct_indices = torch.where(correct_mask)[0]
+        errors = (outputs_phase - targets_phase).abs()
+        incorrect_indices = torch.where(errors > 0)[0]
+        correct_indices = torch.where(errors == 0)[0]
         
         # Sample some examples
         n_incorrect = min(show_examples // 2, len(incorrect_indices))
@@ -367,13 +366,13 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, sho
             inp = all_inputs[idx]
             tgt = targets_phase[idx].item()
             out = outputs_phase[idx].item()
-            pred = predictions[idx].item()
+            pred = outputs_phase[idx].item()
             correct = "✓" if pred == tgt else "✗"
             
             inp_str = bits_to_str(inp, k=phase)
             tgt_str = f"{tgt:+.0f}"
             out_str = f"{out:+.4f}"
-            pred_str = f"{pred:+.0f}"
+            pred_str = f"{pred:+.4f}"
             
             print(f"  {inp_str:<20} {tgt_str:>8} {out_str:>10} {pred_str:>6} {correct:>8}")
     
@@ -637,7 +636,7 @@ def main():
     print(f"{'='*60}")
     total_iterations = 0
     for r in results:
-        print(f"Phase {r['phase']}: Loss = {r['loss']:.4f}, Accuracy = {r['accuracy']:.2%}, Iterations = {r['iterations']}")
+        print(f"Phase {r['phase']}: Loss = {r['loss']:.4f}, MSE = {r['accuracy']:.4f}, Iterations = {r['iterations']}")
         total_iterations += r['iterations']
     print(f"{'='*60}")
     print(f"Total iterations across all phases: {total_iterations}")
@@ -659,9 +658,9 @@ def main():
             coefficients=coefficients
         )
         if args.random_subset:
-            print(f"Phase {phase} (Fourier parity, {phase} CoT tokens): Loss = {loss:.4f}, Accuracy = {accuracy:.2%}\n")
+            print(f"Phase {phase} (Fourier parity, {phase} CoT tokens): Loss = {loss:.4f}, MSE = {accuracy:.4f}\n")
         else:
-            print(f"Phase {phase} (parity of first {phase} bits, {phase} CoT tokens): Loss = {loss:.4f}, Accuracy = {accuracy:.2%}\n")
+            print(f"Phase {phase} (parity of first {phase} bits, {phase} CoT tokens): Loss = {loss:.4f}, MSE = {accuracy:.4f}\n")
     
     # Create output folders
     script_dir = os.path.dirname(os.path.abspath(__file__))
