@@ -62,7 +62,7 @@ def sample_random_batch(n_bits, batch_size):
     """Generate a random batch of inputs (for large n_bits where we can't store all)."""
     return torch.randint(0, 2, (batch_size, n_bits), dtype=torch.long, device=device)
 
-def compute_parity(inputs, k, subset_indices_arr=None, coefficients=None):
+def compute_parity(inputs, k, subset_indices_arr=None, coefficients=None, flipping_bits=None):
     """
     Compute parity of bits for each input.
     
@@ -71,34 +71,53 @@ def compute_parity(inputs, k, subset_indices_arr=None, coefficients=None):
         k: number of bits to consider (first k bit positions)
         subset_indices_arr: list of index lists, each defining a parity subset
         coefficients: list of real coefficients for each subset
+        flipping_bits: list of bit indices to flip for additional targets
     
     Parity is the product of selected bits (treating 0 as -1, 1 as +1).
     For each subset, use only indices < k (assume 1 for the rest),
     then sum parities weighted by coefficients.
+
+    Returns a tensor of shape (B, 1 + len(flipping_bits)), where the first column
+    is the original target and each subsequent column corresponds to flipping
+    one bit from flipping_bits.
     """
-    if k == 0:
-        return torch.ones(inputs.size(0), device=inputs.device)
-
-    if subset_indices_arr is None or len(subset_indices_arr) == 0:
-        subset_indices_arr = [list(range(k))]
-    if coefficients is None or len(coefficients) == 0:
-        coefficients = [1.0] * len(subset_indices_arr)
-
-    if len(coefficients) != len(subset_indices_arr):
-        raise ValueError("coefficients must have the same length as subset_indices_arr")
-
-    result = torch.zeros(inputs.size(0), device=inputs.device)
-    for subset_indices, coeff in zip(subset_indices_arr, coefficients):
-        valid_indices = [i for i in subset_indices if i < k]
-        if len(valid_indices) == 0:
-            parity = torch.ones(inputs.size(0), device=inputs.device)
+    def compute_single_parity(values):
+        if k == 0:
+            return torch.ones(values.size(0), device=values.device)
+        if subset_indices_arr is None or len(subset_indices_arr) == 0:
+            local_subsets = [list(range(k))]
         else:
-            selected = inputs[:, valid_indices]  # (B, len(valid_indices))
-            signs = 2 * selected.float() - 1
-            parity = signs.prod(dim=1)  # (B,)
-        result += float(coeff) * parity
+            local_subsets = subset_indices_arr
+        if coefficients is None or len(coefficients) == 0:
+            local_coeffs = [1.0] * len(local_subsets)
+        else:
+            local_coeffs = coefficients
+        if len(local_coeffs) != len(local_subsets):
+            raise ValueError("coefficients must have the same length as subset_indices_arr")
 
-    return result
+        result = torch.zeros(values.size(0), device=values.device)
+        for subset_indices, coeff in zip(local_subsets, local_coeffs):
+            valid_indices = [i for i in subset_indices if i < k]
+            if len(valid_indices) == 0:
+                parity = torch.ones(values.size(0), device=values.device)
+            else:
+                selected = values[:, valid_indices]  # (B, len(valid_indices))
+                signs = 2 * selected.float() - 1
+                parity = signs.prod(dim=1)  # (B,)
+            result += float(coeff) * parity
+        return result
+
+    base_target = compute_single_parity(inputs)
+    flip_indices = flipping_bits or []
+    flipped_targets = []
+    for bit_idx in flip_indices:
+        if 0 <= bit_idx < inputs.size(1):
+            flipped = inputs.clone()
+            flipped[:, bit_idx] = 1 - flipped[:, bit_idx]
+            flipped_targets.append(compute_single_parity(flipped))
+        else:
+            flipped_targets.append(base_target)
+    return torch.stack([base_target] + flipped_targets, dim=1)
 
 def generate_random_subsets(n_bits, max_subset_size, num_subsets, seed=None):
     """
@@ -133,8 +152,9 @@ def sample_batch(all_inputs, batch_size):
 
 def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                 max_iterations, batch_size, n_bits, eval_interval=100, target_loss=0.2,
-                multilevel_training=False, subset_indices_arr=None, coefficients=None, global_step=0, training_history=None,
-                remember_rate=0.5, detect_threshold=0.2, eval_batch_size=10000):
+                multilevel_training=False, subset_indices_arr=None, coefficients=None, flipping_bits=None,
+                global_step=0, training_history=None, remember_rate=0.5, detect_threshold=0.2,
+                eval_batch_size=10000):
     """
     Train the model for a single phase until loss drops below target_loss.
     
@@ -154,6 +174,7 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                             parity of first i bits with i CoT tokens
         subset_indices_arr: list of bit-index subsets to use for parity (Fourier terms)
         coefficients: coefficients for each subset
+        flipping_bits: list of bit indices to flip for additional targets
         global_step: global step counter across all phases (for wandb logging)
         training_history: list to append training metrics to (for plotting)
     
@@ -188,12 +209,26 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                 r_floor = max(1, min(r_current, phase))
                 i = np.random.randint(r_floor, phase + 1)
             # Compute target parity (use same subset_indices for all levels)
-            target = compute_parity(batch, i, subset_indices_arr=subset_indices_arr, coefficients=coefficients)
+            targets_all = compute_parity(
+                batch,
+                i,
+                subset_indices_arr=subset_indices_arr,
+                coefficients=coefficients,
+                flipping_bits=flipping_bits
+            )
+            target = targets_all[:, 0]
             # Use i CoT tokens
             current_num_cot = i
         else:
             # Compute target parity for this phase
-            target = compute_parity(batch, phase, subset_indices_arr=subset_indices_arr, coefficients=coefficients)
+            targets_all = compute_parity(
+                batch,
+                phase,
+                subset_indices_arr=subset_indices_arr,
+                coefficients=coefficients,
+                flipping_bits=flipping_bits
+            )
+            target = targets_all[:, 0]
             current_num_cot = num_cot_tokens
         
         # Forward pass through generate
@@ -220,7 +255,8 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                 show_examples=6,
                 eval_batch_size=eval_batch_size,
                 subset_indices_arr=subset_indices_arr,
-                coefficients=coefficients
+                coefficients=coefficients,
+                flipping_bits=flipping_bits
             )
             
             # Compute average train loss over the interval
@@ -269,7 +305,8 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
         show_examples=8,
         eval_batch_size=eval_batch_size,
         subset_indices_arr=subset_indices_arr,
-        coefficients=coefficients
+        coefficients=coefficients,
+        flipping_bits=flipping_bits
     )
     print(f"Phase {phase} Complete: Final Loss = {eval_loss:.4f}, MSE = {accuracy:.4f} (after {iter_num} iterations)\n")
     
@@ -307,7 +344,7 @@ def format_fourier_expression(subset_indices_arr, coefficients):
     return " ".join(expr_parts)
 
 @torch.no_grad()
-def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, show_examples=0, eval_batch_size=1024, subset_indices_arr=None, coefficients=None):
+def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, show_examples=0, eval_batch_size=1024, subset_indices_arr=None, coefficients=None, flipping_bits=None):
     """Evaluate model on the full dataset in batches to save memory.
     
     Args:
@@ -319,6 +356,7 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, sho
         eval_batch_size: batch size for evaluation (random batch size)
         subset_indices_arr: list of bit-index subsets to use for parity (Fourier terms)
         coefficients: coefficients for each subset
+        flipping_bits: list of bit indices to flip for additional targets
     """
     model.eval()
 
@@ -332,7 +370,14 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, sho
     eval_inputs = all_inputs[eval_indices]
     
     for cot_tokens in range(1, phase + 1):
-        targets = compute_parity(eval_inputs, cot_tokens, subset_indices_arr=subset_indices_arr, coefficients=coefficients)
+        targets_all = compute_parity(
+            eval_inputs,
+            cot_tokens,
+            subset_indices_arr=subset_indices_arr,
+            coefficients=coefficients,
+            flipping_bits=flipping_bits
+        )
+        targets = targets_all[:, 0]
         outputs, loss = model.generate(eval_inputs, num_cot_tokens=cot_tokens, target=targets)
         losses_by_cot[cot_tokens] = loss.item()
         if cot_tokens == phase:
@@ -509,8 +554,12 @@ def main():
     parser.add_argument('--detect_threshold', type=float, default=0.1, help='Loss threshold used to compute r during evaluation')
     parser.add_argument('--plots_dir', type=str, default='plots', help='Directory for saving plots')
     parser.add_argument('--plot_data_dir', type=str, default='plot_data', help='Directory for saving plot data')
+    parser.add_argument('--flipping_bits', type=str, default='', help='Comma-separated bit indices to flip for extra targets')
 
     args = parser.parse_args()
+    flipping_bits = []
+    if args.flipping_bits.strip():
+        flipping_bits = [int(x) for x in args.flipping_bits.split(',') if x.strip() != '']
     print('multilevel training: ', args.multilevel)
     print('separate heads: ', args.separate_heads)
     print('truncate backprop: ', args.truncate_backprop)
@@ -543,6 +592,7 @@ def main():
             "fourier_num": args.fourier_num,
             "seed": args.seed,
             "detect_threshold": args.detect_threshold,
+            "flipping_bits": flipping_bits,
         }
     )
     
@@ -634,6 +684,7 @@ def main():
             multilevel_training=args.multilevel,
             subset_indices_arr=subset_indices_arr,
             coefficients=coefficients,
+            flipping_bits=flipping_bits,
             global_step=global_step,
             training_history=training_history,
             remember_rate=args.remember_rate,
@@ -674,7 +725,11 @@ def main():
             show_examples=6,
             eval_batch_size=args.eval_batch_size,
             subset_indices_arr=subset_indices_arr,
-            coefficients=coefficients
+            coefficients=coefficients,
+            flipping_bits=flipping_bits
+            subset_indices_arr=subset_indices_arr,
+            coefficients=coefficients,
+            flipping_bits=flipping_bits
         )
         if args.random_subset:
             print(f"Phase {phase} (Fourier parity, {phase} CoT tokens): Loss = {loss:.4f}, MSE = {accuracy:.4f}\n")
