@@ -434,8 +434,7 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, sho
             cot_tokens,
             subset_indices_arr=subset_indices_arr,
             coefficients=coefficients,
-            flipping_bits=flipping_bits,
-            heads=heads
+            flipping_bits=flipping_bits
         )
         targets = targets_all[:, 0]
         head = heads[cot_tokens][0]
@@ -615,8 +614,8 @@ def main():
     parser.add_argument('--detect_threshold', type=float, default=0.1, help='Loss threshold used to compute r during evaluation')
     parser.add_argument('--plots_dir', type=str, default='plots', help='Directory for saving plots')
     parser.add_argument('--plot_data_dir', type=str, default='plot_data', help='Directory for saving plot data')
-    parser.add_argument('--flipping_bits', type=str, default='', help='Comma-separated bit indices to flip for extra targets')
-    parser.add_argument('--flipping_ratio', type=float, default=1.0, help='Relative probability of each flipped target vs original')
+    parser.add_argument('--flipping_bits', type=str, default='1', help='Comma-separated bit indices to flip for extra targets')
+    parser.add_argument('--flipping_ratio', type=float, default=0.5, help='Relative probability of each flipped target vs original')
 
     args = parser.parse_args()
     flipping_bits = []
@@ -671,6 +670,7 @@ def main():
     # max cot tokens = n_bits (one per phase)
     block_size = args.n_bits + args.n_bits + 2
     
+    num_targets = 1 + len(flipping_bits)
     config = GPTConfig(
         block_size=block_size,
         vocab_size=2,
@@ -681,22 +681,17 @@ def main():
         cot_length=args.n_bits,  # max cot tokens = n_bits
         separate_heads=args.separate_heads,
         truncate_backprop=args.truncate_backprop,
-        backprop_steps=args.backprop_steps
+        backprop_steps=args.backprop_steps,
+        num_targets=num_targets
     )
     
     # Create model
     model = GPT(config).to(device)
     print(f"Model parameters: {sum(p.numel() for p in model.parameters()):,}")
     
-    # Create heads for each target (original + flips) and each cot length
-    num_targets = 1 + len(flipping_bits)
-    heads = nn.ModuleList([
-        nn.ModuleList([nn.Linear(args.n_embd, 1, bias=False) for _ in range(num_targets)])
-        for _ in range(args.n_bits + 1)
-    ]).to(device)
-
-    # Create optimizer
-    optimizer = optim.AdamW(list(model.parameters()) + list(heads.parameters()), lr=args.lr)
+    # Use multitarget heads created inside the model
+    heads = model.multitarget_heads
+    optimizer = optim.AdamW(model.parameters(), lr=args.lr)
     
     # Generate inputs (all if n_bits <= 16, otherwise sample for evaluation)
     if args.n_bits <= 16:

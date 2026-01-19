@@ -127,6 +127,7 @@ class GPT(nn.Module):
     def __init__(self, config):
         super().__init__()
         self.n_layers = config.n_layers
+        self.num_targets = getattr(config, 'num_targets', 1)
         self.transformer = nn.ModuleDict(dict(
             wte = nn.Embedding(config.vocab_size, config.n_embd),
             # No wpe needed - using RoPE for positional encoding
@@ -145,6 +146,12 @@ class GPT(nn.Module):
             ])
         else:
             self.linear_head = nn.Linear(config.n_embd, 1, bias=False)
+
+        # Optional multitarget heads (per CoT length, per target)
+        self.multitarget_heads = nn.ModuleList([
+            nn.ModuleList([nn.Linear(config.n_embd, 1, bias=False) for _ in range(self.num_targets)])
+            for _ in range(config.cot_length + 1)
+        ])
         
         # Special embedding vector added at the end of cot_tokens to produce final output
         self.special_embedding = nn.Parameter(torch.randn(config.n_embd) * 0.08)  # 4x larger std
@@ -291,7 +298,7 @@ class GPTConfig():
     backprop_steps = 1
 
     def __init__(self, block_size, vocab_size, n_layers, n_heads, n_embd, dropout, cot_length, 
-                 separate_heads=False, truncate_backprop=False, backprop_steps=1):
+                 separate_heads=False, truncate_backprop=False, backprop_steps=1, num_targets=1):
         super().__init__()
         self.block_size = block_size
         self.vocab_size = vocab_size
@@ -303,4 +310,5 @@ class GPTConfig():
         self.separate_heads = separate_heads
         self.truncate_backprop = truncate_backprop
         self.backprop_steps = backprop_steps
+        self.num_targets = num_targets
 
