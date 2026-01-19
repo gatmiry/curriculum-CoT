@@ -153,8 +153,8 @@ def sample_batch(all_inputs, batch_size):
 def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                 max_iterations, batch_size, n_bits, eval_interval=100, target_loss=0.2,
                 multilevel_training=False, subset_indices_arr=None, coefficients=None, flipping_bits=None,
-                global_step=0, training_history=None, remember_rate=0.5, detect_threshold=0.2,
-                eval_batch_size=10000):
+                heads=None, flipping_ratio=1.0, global_step=0, training_history=None,
+                remember_rate=0.5, detect_threshold=0.2, eval_batch_size=10000):
     """
     Train the model for a single phase until loss drops below target_loss.
     
@@ -175,6 +175,8 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
         subset_indices_arr: list of bit-index subsets to use for parity (Fourier terms)
         coefficients: coefficients for each subset
         flipping_bits: list of bit indices to flip for additional targets
+        heads: per-(cot, target) linear heads
+        flipping_ratio: relative probability of each flipped target vs original
         global_step: global step counter across all phases (for wandb logging)
         training_history: list to append training metrics to (for plotting)
     
@@ -216,7 +218,18 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                 coefficients=coefficients,
                 flipping_bits=flipping_bits
             )
-            target = targets_all[:, 0]
+            relevant_flip_indices = [
+                idx for idx, bit in enumerate(flipping_bits or []) if bit < i
+            ]
+            if not relevant_flip_indices:
+                target_idx = 0
+            else:
+                weights = [1.0] + [flipping_ratio] * len(relevant_flip_indices)
+                probs = np.array(weights, dtype=np.float64)
+                probs /= probs.sum()
+                choice = np.random.choice(len(probs), p=probs)
+                target_idx = 0 if choice == 0 else (relevant_flip_indices[choice - 1] + 1)
+            target = targets_all[:, target_idx]
             # Use i CoT tokens
             current_num_cot = i
         else:
@@ -228,12 +241,24 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                 coefficients=coefficients,
                 flipping_bits=flipping_bits
             )
-            target = targets_all[:, 0]
+            relevant_flip_indices = [
+                idx for idx, bit in enumerate(flipping_bits or []) if bit < phase
+            ]
+            if not relevant_flip_indices:
+                target_idx = 0
+            else:
+                weights = [1.0] + [flipping_ratio] * len(relevant_flip_indices)
+                probs = np.array(weights, dtype=np.float64)
+                probs /= probs.sum()
+                choice = np.random.choice(len(probs), p=probs)
+                target_idx = 0 if choice == 0 else (relevant_flip_indices[choice - 1] + 1)
+            target = targets_all[:, target_idx]
             current_num_cot = num_cot_tokens
         
         # Forward pass through generate
         optimizer.zero_grad()
-        output, loss = model.generate(batch, num_cot_tokens=current_num_cot, target=target)
+        head = heads[current_num_cot][target_idx]
+        output, loss = generate_with_head(model, batch, current_num_cot, head, target=target)
         
         # Backward pass
         loss.backward()
@@ -256,7 +281,8 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
                 eval_batch_size=eval_batch_size,
                 subset_indices_arr=subset_indices_arr,
                 coefficients=coefficients,
-                flipping_bits=flipping_bits
+                flipping_bits=flipping_bits,
+                heads=heads
             )
             
             # Compute average train loss over the interval
@@ -306,7 +332,8 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
         eval_batch_size=eval_batch_size,
         subset_indices_arr=subset_indices_arr,
         coefficients=coefficients,
-        flipping_bits=flipping_bits
+        flipping_bits=flipping_bits,
+        heads=heads
     )
     print(f"Phase {phase} Complete: Final Loss = {eval_loss:.4f}, MSE = {accuracy:.4f} (after {iter_num} iterations)\n")
     
@@ -343,8 +370,39 @@ def format_fourier_expression(subset_indices_arr, coefficients):
             expr_parts.append(f"{sign} {coeff_abs:.4f} {vars_part}")
     return " ".join(expr_parts)
 
+def generate_with_head(model, idx, num_cot_tokens, head, target=None):
+    """Generate output using a specific linear head for a target."""
+    B, input_length = idx.size()
+    truncate_backprop = getattr(model.config, 'truncate_backprop', False)
+    backprop_steps = getattr(model.config, 'backprop_steps', num_cot_tokens + 1)
+    cot_embeddings = torch.empty(B, 0, model.config.n_embd, device=idx.device)
+    detach_until = num_cot_tokens + 1 - backprop_steps if truncate_backprop else 0
+
+    for i in range(num_cot_tokens):
+        if truncate_backprop and i < detach_until:
+            cot_embeddings = cot_embeddings.detach()
+        special_emb = model.special_embedding.unsqueeze(0).unsqueeze(0).expand(B, 1, -1)
+        current_cot = torch.cat([cot_embeddings, special_emb], dim=1)
+        hidden_states = model.forward_with_hidden(idx, current_cot)
+        next_cot_token = hidden_states[:, -1:, :]
+        cot_embeddings = torch.cat([cot_embeddings, next_cot_token], dim=1)
+
+    if truncate_backprop and num_cot_tokens < detach_until:
+        cot_embeddings = cot_embeddings.detach()
+
+    special_emb = model.special_embedding.unsqueeze(0).unsqueeze(0).expand(B, 1, -1)
+    final_cot = torch.cat([cot_embeddings, special_emb], dim=1)
+    hidden_states = model.forward_with_hidden(idx, final_cot)
+    special_hidden = hidden_states[:, -1, :]
+    output = head(special_hidden).squeeze(-1)
+
+    loss = None
+    if target is not None:
+        loss = nn.functional.mse_loss(output, target)
+    return output, loss
+
 @torch.no_grad()
-def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, show_examples=0, eval_batch_size=1024, subset_indices_arr=None, coefficients=None, flipping_bits=None):
+def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, show_examples=0, eval_batch_size=1024, subset_indices_arr=None, coefficients=None, flipping_bits=None, heads=None):
     """Evaluate model on the full dataset in batches to save memory.
     
     Args:
@@ -357,6 +415,7 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, sho
         subset_indices_arr: list of bit-index subsets to use for parity (Fourier terms)
         coefficients: coefficients for each subset
         flipping_bits: list of bit indices to flip for additional targets
+        heads: per-(cot, target) linear heads
     """
     model.eval()
 
@@ -375,10 +434,12 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, detect_threshold=0.2, sho
             cot_tokens,
             subset_indices_arr=subset_indices_arr,
             coefficients=coefficients,
-            flipping_bits=flipping_bits
+            flipping_bits=flipping_bits,
+            heads=heads
         )
         targets = targets_all[:, 0]
-        outputs, loss = model.generate(eval_inputs, num_cot_tokens=cot_tokens, target=targets)
+        head = heads[cot_tokens][0]
+        outputs, loss = generate_with_head(model, eval_inputs, cot_tokens, head, target=targets)
         losses_by_cot[cot_tokens] = loss.item()
         if cot_tokens == phase:
             outputs_phase = outputs
@@ -555,6 +616,7 @@ def main():
     parser.add_argument('--plots_dir', type=str, default='plots', help='Directory for saving plots')
     parser.add_argument('--plot_data_dir', type=str, default='plot_data', help='Directory for saving plot data')
     parser.add_argument('--flipping_bits', type=str, default='', help='Comma-separated bit indices to flip for extra targets')
+    parser.add_argument('--flipping_ratio', type=float, default=1.0, help='Relative probability of each flipped target vs original')
 
     args = parser.parse_args()
     flipping_bits = []
@@ -593,6 +655,7 @@ def main():
             "seed": args.seed,
             "detect_threshold": args.detect_threshold,
             "flipping_bits": flipping_bits,
+            "flipping_ratio": args.flipping_ratio,
         }
     )
     
@@ -625,8 +688,15 @@ def main():
     model = GPT(config).to(device)
     print(f"Model parameters: {sum(p.numel() for p in model.parameters()):,}")
     
+    # Create heads for each target (original + flips) and each cot length
+    num_targets = 1 + len(flipping_bits)
+    heads = nn.ModuleList([
+        nn.ModuleList([nn.Linear(args.n_embd, 1, bias=False) for _ in range(num_targets)])
+        for _ in range(args.n_bits + 1)
+    ]).to(device)
+
     # Create optimizer
-    optimizer = optim.AdamW(model.parameters(), lr=args.lr)
+    optimizer = optim.AdamW(list(model.parameters()) + list(heads.parameters()), lr=args.lr)
     
     # Generate inputs (all if n_bits <= 16, otherwise sample for evaluation)
     if args.n_bits <= 16:
@@ -685,6 +755,8 @@ def main():
             subset_indices_arr=subset_indices_arr,
             coefficients=coefficients,
             flipping_bits=flipping_bits,
+            heads=heads,
+            flipping_ratio=args.flipping_ratio,
             global_step=global_step,
             training_history=training_history,
             remember_rate=args.remember_rate,
@@ -726,10 +798,8 @@ def main():
             eval_batch_size=args.eval_batch_size,
             subset_indices_arr=subset_indices_arr,
             coefficients=coefficients,
-            flipping_bits=flipping_bits
-            subset_indices_arr=subset_indices_arr,
-            coefficients=coefficients,
-            flipping_bits=flipping_bits
+            flipping_bits=flipping_bits,
+            heads=heads
         )
         if args.random_subset:
             print(f"Phase {phase} (Fourier parity, {phase} CoT tokens): Loss = {loss:.4f}, MSE = {accuracy:.4f}\n")
@@ -745,7 +815,7 @@ def main():
     
     # Generate timestamp for filenames and run folders
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    run_folder = f"{timestamp}_fourier_{args.fourier_num}"
+    run_folder = f"{timestamp}_flips_{len(flipping_bits)}"
     plots_run_dir = os.path.join(plots_dir, run_folder)
     plot_data_run_dir = os.path.join(plot_data_dir, run_folder)
     os.makedirs(plots_run_dir, exist_ok=True)
