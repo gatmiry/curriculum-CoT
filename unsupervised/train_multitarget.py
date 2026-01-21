@@ -54,7 +54,7 @@ def generate_all_inputs(n_bits, max_samples=None):
         return torch.tensor(inputs, dtype=torch.long, device=device)
     
     # Otherwise, sample random inputs
-    num_samples = max_samples if max_samples else min(num_possible, 100000)
+    num_samples = max_samples if max_samples else min(num_possible, 200000)
     inputs = torch.randint(0, 2, (num_samples, n_bits), dtype=torch.long, device=device)
     return inputs
 
@@ -595,10 +595,10 @@ def main():
     parser.add_argument('--n_bits', type=int, default=20, help='Number of input bits')
     parser.add_argument('--k_phases', type=int, default=10, help='Number of phases (max parity bits)')
     parser.add_argument('--n_layers', type=int, default=1, help='Number of transformer layers')
-    parser.add_argument('--n_heads', type=int, default=1, help='Number of attention heads')
-    parser.add_argument('--n_embd', type=int, default=256, help='Embedding dimension')
+    parser.add_argument('--n_heads', type=int, default=4, help='Number of attention heads')
+    parser.add_argument('--n_embd', type=int, default=64, help='Embedding dimension')
     parser.add_argument('--batch_size', type=int, default=128, help='Batch size')
-    parser.add_argument('--iterations_per_phase', type=int, default=15000, help='Training iterations per phase')
+    parser.add_argument('--iterations_per_phase', type=int, default=20000, help='Training iterations per phase')
     parser.add_argument('--lr', type=float, default=1e-5, help='Learning rate')
     parser.add_argument('--eval_interval', type=int, default=200, help='Evaluation interval')
     parser.add_argument('--eval_batch_size', type=int, default=10000, help='Evaluation batch size')
@@ -608,13 +608,13 @@ def main():
     parser.add_argument('--truncate_backprop', action='store_true', default=True, help='Enable truncated backprop through only last r forward passes')
     parser.add_argument('--backprop_steps', type=int, default=1, help='Number of last forward passes to backprop through (r)')
     parser.add_argument('--random_subset', action='store_true', default=True, help='Use random subsets for Fourier parity terms')
-    parser.add_argument('--fourier_num', type=int, default=2, help='Number of parity subsets (Fourier terms) to sample')
+    parser.add_argument('--fourier_num', type=int, default=3, help='Number of parity subsets (Fourier terms) to sample')
     parser.add_argument('--seed', type=int, default=54, help='Random seed')
     parser.add_argument('--remember_rate', type=float, default=0.1, help='Rate at which to remember the previous phases')
     parser.add_argument('--detect_threshold', type=float, default=0.1, help='Loss threshold used to compute r during evaluation')
     parser.add_argument('--plots_dir', type=str, default='plots', help='Directory for saving plots')
     parser.add_argument('--plot_data_dir', type=str, default='plot_data', help='Directory for saving plot data')
-    parser.add_argument('--flipping_bits', type=str, default='0', help='Comma-separated bit indices to flip for extra targets')
+    parser.add_argument('--flipping_bits', type=str, default='0,2', help='Comma-separated bit indices to flip for extra targets')
     parser.add_argument('--flipping_ratio', type=float, default=0.5, help='Relative probability of each flipped target vs original')
 
     args = parser.parse_args()
@@ -626,6 +626,8 @@ def main():
     print('truncate backprop: ', args.truncate_backprop)
     print('backprop steps (r): ', args.backprop_steps)
     print('random subset: ', args.random_subset)
+    if args.n_embd % args.n_heads != 0:
+        raise ValueError(f"n_embd ({args.n_embd}) must be divisible by n_heads ({args.n_heads})")
     # Set random seed
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)

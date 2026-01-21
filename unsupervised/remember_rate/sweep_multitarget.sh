@@ -12,3 +12,5 @@ mkdir -p "$PLOTS_DIR" "$PLOT_DATA_DIR"
   --plots_dir "$PLOTS_DIR" \
   --plot_data_dir "$PLOT_DATA_DIR"
 
+
+
