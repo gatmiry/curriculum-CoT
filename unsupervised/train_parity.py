@@ -167,7 +167,7 @@ def train_phase(model, optimizer, all_inputs, phase, num_cot_tokens,
             # Randomly pick i from 1 to phase (inclusive)
             import random
             if remember_rate > random.random():
-                i = np.random.randint(1, phase)
+                i = 1 if phase == 1 else np.random.randint(1, phase)
             else:
                 i = phase
             # Compute target parity (use same subset_indices for all levels)

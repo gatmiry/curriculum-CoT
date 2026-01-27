@@ -57,6 +57,8 @@ class test_composite_function():
         print('initialized dataset')
         dataset.set_target_function_from_string(target_function_str)
 
+        # breakpoint()
+
         # Set target function from config
         import wandb
         wandb.init(project="distributional-CoT", name="test_composite_function")

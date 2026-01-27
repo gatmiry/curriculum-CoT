@@ -1,0 +1,648 @@
+_name_or_path:
+    value: facebook/opt-125m
+_remove_final_layer_norm:
+    value: false
+_wandb:
+    value:
+        cli_version: 0.24.0
+        e:
+            b02g9zu228pjglw0cvrv14dedwvhciar:
+                args:
+                    - --dataset_path
+                    - propercache/data/colbert_training/parity_nbits10_train100000
+                    - --model_name
+                    - facebook/opt-125m
+                codePath: biglmexps/finetune.py
+                codePathLocal: biglmexps/finetune.py
+                cpu_count: 128
+                cpu_count_logical: 256
+                cudaVersion: "12.9"
+                disk:
+                    /:
+                        total: "105089261568"
+                        used: "59431022592"
+                email: prasann@berkeley.edu
+                executable: /accounts/projects/sewonm/prasann/.conda/envs/cotenv/bin/python3
+                git:
+                    commit: 14d0e31d5d35fdf7b8c79452b966cae2398af861
+                    remote: https://github.com/gatmiry/curriculum-CoT.git
+                gpu: NVIDIA A100-SXM4-80GB
+                gpu_count: 8
+                gpu_nvidia:
+                    - architecture: Ampere
+                      cudaCores: 6912
+                      memoryTotal: "85899345920"
+                      name: NVIDIA A100-SXM4-80GB
+                      uuid: GPU-8ca69c95-84b2-3ac4-c847-4a919d51cdde
+                    - architecture: Ampere
+                      cudaCores: 6912
+                      memoryTotal: "85899345920"
+                      name: NVIDIA A100-SXM4-80GB
+                      uuid: GPU-bbd0cc42-9998-c393-5dd8-9d8a5aa2b165
+                    - architecture: Ampere
+                      cudaCores: 6912
+                      memoryTotal: "85899345920"
+                      name: NVIDIA A100-SXM4-80GB
+                      uuid: GPU-318d0064-530d-b618-fe04-40e9c04bf37b
+                    - architecture: Ampere
+                      cudaCores: 6912
+                      memoryTotal: "85899345920"
+                      name: NVIDIA A100-SXM4-80GB
+                      uuid: GPU-2e3cd097-8c5e-90a4-ef98-37633f17389b
+                    - architecture: Ampere
+                      cudaCores: 6912
+                      memoryTotal: "85899345920"
+                      name: NVIDIA A100-SXM4-80GB
+                      uuid: GPU-8a77b7ca-7332-da24-1f71-1a553ce48c49
+                    - architecture: Ampere
+                      cudaCores: 6912
+                      memoryTotal: "85899345920"
+                      name: NVIDIA A100-SXM4-80GB
+                      uuid: GPU-a69f29b3-1cde-7b2b-79c3-45993dec17a5
+                    - architecture: Ampere
+                      cudaCores: 6912
+                      memoryTotal: "85899345920"
+                      name: NVIDIA A100-SXM4-80GB
+                      uuid: GPU-8ab6fbda-ff99-8104-1488-9bca0d6145bc
+                    - architecture: Ampere
+                      cudaCores: 6912
+                      memoryTotal: "85899345920"
+                      name: NVIDIA A100-SXM4-80GB
+                      uuid: GPU-cc9d4aea-644e-d25c-64d7-68e1e1e58342
+                host: lambda-hyperplane01
+                memory:
+                    total: "1081953148928"
+                os: Linux-6.8.0-87-generic-x86_64-with-glibc2.39
+                program: /accounts/projects/sewonm/prasann/projects/curriculum-CoT/biglmexps/finetune.py
+                python: CPython 3.12.0
+                root: /accounts/projects/sewonm/prasann/projects/curriculum-CoT
+                slurm:
+                    account: site
+                    cluster_name: screms
+                    conf: /etc/slurm/slurm.conf
+                    cpus_on_node: "128"
+                    cpus_per_task: "128"
+                    distribution: cyclic
+                    gpus: "8"
+                    gpus_on_node: "8"
+                    gtids: "0"
+                    job_account: site
+                    job_cpus_per_node: "128"
+                    job_end_time: "1769118838"
+                    job_gid: "1440"
+                    job_group: berkeleynlp
+                    job_id: "102343"
+                    job_name: bash
+                    job_nodelist: lambda-hyperplane01
+                    job_num_nodes: "1"
+                    job_partition: lambda
+                    job_qos: preemptive_high
+                    job_start_time: "1769032438"
+                    job_uid: "3018"
+                    job_user: prasann
+                    jobid: "102343"
+                    launch_node_ipaddr: 10.141.0.252
+                    localid: "0"
+                    mem_per_node: "819200"
+                    nnodes: "1"
+                    nodeid: "0"
+                    nodelist: lambda-hyperplane01
+                    nprocs: "1"
+                    ntasks: "1"
+                    prio_process: "0"
+                    procid: "0"
+                    pty_port: "36347"
+                    pty_win_col: "150"
+                    pty_win_row: "17"
+                    srun_comm_host: 10.141.0.252
+                    srun_comm_port: "42831"
+                    step_gpus: 0,1,2,3,4,5,6,7
+                    step_id: "0"
+                    step_launcher_port: "42831"
+                    step_nodelist: lambda-hyperplane01
+                    step_num_nodes: "1"
+                    step_num_tasks: "1"
+                    step_resv_ports: 12839-12840
+                    step_tasks_per_node: "1"
+                    stepid: "0"
+                    submit_dir: /accounts/projects/sewonm/prasann/projects/curriculum-CoT
+                    submit_host: lambda-headnode02
+                    task_pid: "862217"
+                    tasks_per_node: "1"
+                    topology_addr: lambda-hyperplane01
+                    topology_addr_pattern: node
+                    umask: "0022"
+                    working_cluster: screms:10.141.0.252:6817:9984:109
+                startedAt: "2026-01-21T23:33:38.175501Z"
+                writerId: b02g9zu228pjglw0cvrv14dedwvhciar
+        m:
+            - "1": train/global_step
+              "6":
+                - 3
+              "7": []
+            - "2": '*'
+              "5": 1
+              "6":
+                - 1
+              "7": []
+        python_version: 3.12.0
+        t:
+            "1":
+                - 1
+                - 11
+                - 41
+                - 49
+                - 51
+                - 71
+                - 84
+                - 95
+                - 98
+            "2":
+                - 1
+                - 11
+                - 41
+                - 49
+                - 51
+                - 71
+                - 84
+                - 95
+                - 98
+            "3":
+                - 2
+                - 7
+                - 19
+                - 62
+                - 66
+            "4": 3.12.0
+            "5": 0.24.0
+            "6": 4.57.3
+            "9":
+                "1": transformers_trainer
+            "12": 0.24.0
+            "13": linux-x86_64
+accelerator_config:
+    value:
+        dispatch_batches: null
+        even_batches: true
+        gradient_accumulation_kwargs: null
+        non_blocking: false
+        split_batches: false
+        use_seedable_sampler: true
+activation_dropout:
+    value: 0
+activation_function:
+    value: relu
+activation_offloading:
+    value: false
+adafactor:
+    value: false
+adam_beta1:
+    value: 0.9
+adam_beta2:
+    value: 0.999
+adam_epsilon:
+    value: 1e-08
+add_cross_attention:
+    value: false
+architectures:
+    value:
+        - OPTForCausalLM
+assistant_only_loss:
+    value: false
+attention_dropout:
+    value: 0
+auto_find_batch_size:
+    value: false
+average_tokens_across_devices:
+    value: true
+bad_words_ids:
+    value: null
+batch_eval_metrics:
+    value: false
+begin_suppress_tokens:
+    value: null
+bf16:
+    value: false
+bf16_full_eval:
+    value: true
+bos_token_id:
+    value: 2
+chat_template_path:
+    value: null
+chunk_size_feed_forward:
+    value: 0
+completion_only_loss:
+    value: null
+cross_attention_hidden_size:
+    value: null
+data_seed:
+    value: 3407
+dataloader_drop_last:
+    value: false
+dataloader_num_workers:
+    value: 0
+dataloader_persistent_workers:
+    value: false
+dataloader_pin_memory:
+    value: true
+dataloader_prefetch_factor:
+    value: null
+dataset_kwargs:
+    value: null
+dataset_num_proc:
+    value: 64
+dataset_text_field:
+    value: text
+ddp_backend:
+    value: null
+ddp_broadcast_buffers:
+    value: null
+ddp_bucket_cap_mb:
+    value: null
+ddp_find_unused_parameters:
+    value: null
+ddp_timeout:
+    value: 1800
+debug:
+    value: []
+decoder_start_token_id:
+    value: null
+deepspeed:
+    value: null
+disable_tqdm:
+    value: false
+diversity_penalty:
+    value: 0
+do_eval:
+    value: true
+do_layer_norm_before:
+    value: true
+do_predict:
+    value: false
+do_sample:
+    value: false
+do_train:
+    value: false
+dropout:
+    value: 0.1
+dtype:
+    value: bfloat16
+early_stopping:
+    value: false
+enable_bias:
+    value: true
+encoder_no_repeat_ngram_size:
+    value: 0
+eos_token:
+    value: <EOS_TOKEN>
+eos_token_id:
+    value: 2
+eval_accumulation_steps:
+    value: 2
+eval_delay:
+    value: 0
+eval_do_concat_batches:
+    value: true
+eval_on_start:
+    value: false
+eval_packing:
+    value: null
+eval_steps:
+    value: null
+eval_strategy:
+    value: epoch
+eval_use_gather_object:
+    value: false
+exponential_decay_length_penalty:
+    value: null
+ffn_dim:
+    value: 3072
+finetuning_task:
+    value: null
+forced_bos_token_id:
+    value: null
+forced_eos_token_id:
+    value: null
+fp16:
+    value: false
+fp16_backend:
+    value: auto
+fp16_full_eval:
+    value: false
+fp16_opt_level:
+    value: O1
+fsdp:
+    value: []
+fsdp_config:
+    value:
+        min_num_params: 0
+        xla: false
+        xla_fsdp_grad_ckpt: false
+        xla_fsdp_v2: false
+fsdp_min_num_params:
+    value: 0
+fsdp_transformer_layer_cls_to_wrap:
+    value: null
+full_determinism:
+    value: false
+gradient_accumulation_steps:
+    value: 2
+gradient_checkpointing:
+    value: true
+gradient_checkpointing_kwargs:
+    value: null
+greater_is_better:
+    value: null
+group_by_length:
+    value: false
+half_precision_backend:
+    value: auto
+hidden_size:
+    value: 768
+hub_always_push:
+    value: false
+hub_model_id:
+    value: null
+hub_private_repo:
+    value: null
+hub_revision:
+    value: null
+hub_strategy:
+    value: every_save
+hub_token:
+    value: <HUB_TOKEN>
+id2label:
+    value:
+        "0": LABEL_0
+        "1": LABEL_1
+ignore_data_skip:
+    value: false
+include_for_metrics:
+    value: []
+include_inputs_for_metrics:
+    value: false
+include_num_input_tokens_seen:
+    value: "no"
+include_tokens_per_second:
+    value: false
+init_std:
+    value: 0.02
+is_decoder:
+    value: false
+is_encoder_decoder:
+    value: false
+jit_mode_eval:
+    value: false
+label_names:
+    value: null
+label_smoothing_factor:
+    value: 0
+label2id:
+    value:
+        LABEL_0: 0
+        LABEL_1: 1
+layer_norm_elementwise_affine:
+    value: true
+layerdrop:
+    value: 0
+learning_rate:
+    value: 2e-05
+length_column_name:
+    value: length
+length_penalty:
+    value: 1
+liger_kernel_config:
+    value: null
+load_best_model_at_end:
+    value: false
+local_rank:
+    value: 0
+log_level:
+    value: passive
+log_level_replica:
+    value: warning
+log_on_each_node:
+    value: true
+logging_dir:
+    value: propercache/cache/generative_training/facebook_opt-125m_parity_nbits10_train100000/runs/Jan21_23-33-32_lambda-hyperplane01
+logging_first_step:
+    value: false
+logging_nan_inf_filter:
+    value: false
+logging_steps:
+    value: 1
+logging_strategy:
+    value: steps
+loss_type:
+    value: nll
+lr_scheduler_type:
+    value: linear
+max_grad_norm:
+    value: 1
+max_length:
+    value: 2048
+max_position_embeddings:
+    value: 2048
+max_seq_length:
+    value: 2048
+max_steps:
+    value: -1
+metric_for_best_model:
+    value: null
+min_length:
+    value: 0
+model/num_parameters:
+    value: 125239296
+model_init_kwargs:
+    value: null
+model_type:
+    value: opt
+mp_parameters:
+    value: ""
+neftune_noise_alpha:
+    value: null
+no_cuda:
+    value: false
+no_repeat_ngram_size:
+    value: 0
+num_attention_heads:
+    value: 12
+num_beam_groups:
+    value: 1
+num_beams:
+    value: 1
+num_hidden_layers:
+    value: 12
+num_return_sequences:
+    value: 1
+num_train_epochs:
+    value: 1
+optim:
+    value: adamw_8bit
+optim_args:
+    value: null
+optim_target_modules:
+    value: null
+output_attentions:
+    value: false
+output_dir:
+    value: propercache/cache/generative_training/facebook_opt-125m_parity_nbits10_train100000
+output_hidden_states:
+    value: false
+output_scores:
+    value: false
+overwrite_output_dir:
+    value: null
+packing:
+    value: false
+packing_strategy:
+    value: bfd
+pad_to_multiple_of:
+    value: null
+pad_token:
+    value: <PAD_TOKEN>
+pad_token_id:
+    value: 1
+padding_free:
+    value: true
+parallelism_config:
+    value: null
+past_index:
+    value: -1
+per_device_eval_batch_size:
+    value: 4
+per_device_train_batch_size:
+    value: 64
+per_gpu_eval_batch_size:
+    value: null
+per_gpu_train_batch_size:
+    value: null
+prediction_loss_only:
+    value: false
+prefix:
+    value: </s>
+problem_type:
+    value: null
+project:
+    value: huggingface
+push_to_hub:
+    value: false
+push_to_hub_model_id:
+    value: null
+push_to_hub_organization:
+    value: null
+push_to_hub_token:
+    value: <PUSH_TO_HUB_TOKEN>
+ray_scope:
+    value: last
+remove_invalid_values:
+    value: false
+remove_unused_columns:
+    value: true
+repetition_penalty:
+    value: 1
+report_to:
+    value:
+        - wandb
+restore_callback_states_from_checkpoint:
+    value: false
+resume_from_checkpoint:
+    value: null
+return_dict:
+    value: true
+return_dict_in_generate:
+    value: false
+run_name:
+    value: null
+save_on_each_node:
+    value: false
+save_only_model:
+    value: false
+save_safetensors:
+    value: true
+save_steps:
+    value: 500
+save_strategy:
+    value: "no"
+save_total_limit:
+    value: null
+seed:
+    value: 42
+sep_token_id:
+    value: null
+skip_memory_metrics:
+    value: true
+suppress_tokens:
+    value: null
+task_specific_params:
+    value: null
+temperature:
+    value: 1
+tf_legacy_loss:
+    value: false
+tf32:
+    value: null
+tie_encoder_decoder:
+    value: false
+tie_word_embeddings:
+    value: true
+tokenizer_class:
+    value: null
+top_k:
+    value: 50
+top_p:
+    value: 1
+torch_compile:
+    value: false
+torch_compile_backend:
+    value: null
+torch_compile_mode:
+    value: null
+torch_empty_cache_steps:
+    value: 250
+torchdynamo:
+    value: null
+torchscript:
+    value: false
+tpu_metrics_debug:
+    value: false
+tpu_num_cores:
+    value: null
+trackio_space_id:
+    value: trackio
+transformers_version:
+    value: 4.57.3
+typical_p:
+    value: 1
+unsloth_grpo_mini_batch:
+    value: null
+unsloth_logit_chunk_multiplier:
+    value: null
+unsloth_num_chunks:
+    value: -1
+unsloth_version:
+    value: 2026.1.3
+use_bfloat16:
+    value: false
+use_cache:
+    value: true
+use_cpu:
+    value: false
+use_legacy_prediction_loop:
+    value: false
+use_liger_kernel:
+    value: false
+use_mps_device:
+    value: false
+vllm_sampling_params:
+    value: null
+vocab_size:
+    value: 50272
+warmup_ratio:
+    value: 0.1
+warmup_steps:
+    value: 5
+weight_decay:
+    value: 0.01
+word_embed_proj_dim:
+    value: 768
