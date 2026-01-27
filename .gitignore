@@ -3,3 +3,4 @@ propercache/
 unsloth_compiled_cache/
 *__pycache__/
 outputs/
+wandb/

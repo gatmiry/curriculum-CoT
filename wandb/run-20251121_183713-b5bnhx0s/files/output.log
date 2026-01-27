@@ -1,6 +1,0 @@
-Error executing job with overrides: []
-Error in call to target 'test_composite_function.test_composite_function':
-TypeError("test_composite_function.__init__() got an unexpected keyword argument 'function_dim'")
-full_key: trainer
-
-Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

@@ -1,6 +1,0 @@
-================================================================================
-Using device: cuda
-samples type in get_batch is torch.int64
-bacth type before return is torch.float32
-batch type is torch.int64
-shape of self.transformer.wte(idx) torch.cuda.FloatTensor  shape of cts_tokens torch.cuda.FloatTensor
