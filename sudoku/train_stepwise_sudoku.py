@@ -118,6 +118,7 @@ def generate_batch(t, batch_size, max_empty=None):
     n = t * t
     total_cells = n * n
     puzzles = []
+    is_valid = []
     
     for _ in range(batch_size):
         solved = generate_solved_sudoku(t)
@@ -127,8 +128,11 @@ def generate_batch(t, batch_size, max_empty=None):
             num_empty = random.randint(1, total_cells // 2)
         puzzle = create_puzzle(solved, num_empty)
         puzzles.append(puzzle.flatten())
+        is_valid.append(True)
     
-    return torch.tensor(np.array(puzzles), dtype=torch.long, device=device)
+    puzzles_tensor = torch.tensor(np.array(puzzles), dtype=torch.long, device=device)
+    is_valid_tensor = torch.tensor(is_valid, dtype=torch.bool, device=device)
+    return puzzles_tensor, is_valid_tensor
 
 # ============== Model ==============
 
@@ -257,7 +261,7 @@ class StepwiseSudokuGPT(nn.Module):
         hidden = self.ln_f(combined)
         return hidden[:, -1, :]
 
-    def forward_rl(self, puzzles, num_cot_tokens, wt=1.0):
+    def forward_rl(self, puzzles, num_cot_tokens, wt=1.0, is_valid_puzzle=None):
         """
         RL-style forward: model generates autoregressively, loss based on validity.
         
@@ -265,6 +269,7 @@ class StepwiseSudokuGPT(nn.Module):
             puzzles: (B, num_cells) input puzzles with 0s for empty cells
             num_cot_tokens: number of CoT tokens / max steps
             wt: penalty weight for invalid moves
+            is_valid_puzzle: (B,) bool tensor indicating if each puzzle is solvable
         
         Returns:
             loss, metrics_dict
@@ -272,8 +277,9 @@ class StepwiseSudokuGPT(nn.Module):
         B = puzzles.size(0)
         hidden = self.get_hidden(puzzles, num_cot_tokens)
         
-        # Check if puzzles are solvable (all our generated ones are)
-        is_valid_puzzle = torch.ones(B, dtype=torch.bool, device=puzzles.device)
+        # Check if puzzles are solvable
+        if is_valid_puzzle is None:
+            is_valid_puzzle = torch.ones(B, dtype=torch.bool, device=puzzles.device)
         
         # Validity prediction
         validity_logits = self.validity_heads[num_cot_tokens](hidden)  # (B, 2)
@@ -316,6 +322,9 @@ class StepwiseSudokuGPT(nn.Module):
         
         max_steps = min(num_cot_tokens, len(loc_heads))
         
+        # Track dense penalty for filled cells (accumulated across steps)
+        total_filled_penalty = torch.zeros(B, device=puzzles.device)
+        
         for step in range(max_steps):
             # Skip if all samples are done
             active = valid_puzzle_mask & ~completed & ~made_mistake
@@ -326,6 +335,13 @@ class StepwiseSudokuGPT(nn.Module):
             loc_logits = loc_heads[step](hidden)  # (B, num_cells)
             loc_log_probs = torch.log_softmax(loc_logits, dim=-1)
             pred_loc = loc_logits.argmax(dim=-1)  # (B,)
+            
+            # DIRECT SUPERVISION on empty cell locations
+            # Cross-entropy: -log P(empty_cell) for each empty cell
+            empty_mask = (current_grids == 0)  # (B, num_cells) - True where cell is empty
+            # Sum -log P(empty) over all empty cells (encourages model to assign high prob to empty cells)
+            location_supervision = -(loc_log_probs * empty_mask.float()).sum(dim=-1)  # (B,)
+            total_filled_penalty = total_filled_penalty + location_supervision
             
             # Predict number
             num_logits = num_heads[step](hidden)  # (B, n)
@@ -345,14 +361,14 @@ class StepwiseSudokuGPT(nn.Module):
                 # Check if location is valid (empty cell)
                 if grid_b[loc_b] != 0:
                     # Trying to fill non-empty cell - invalid move
-                    # To DISCOURAGE this action, add +log P(loc) to loss (not averaged)
+                    # To DISCOURAGE: add log P (negative) → minimizing pushes P down
                     penalty_loss[b] = wt * loc_log_probs[b, loc_b]
                     made_mistake[b] = True
                     continue
                 
                 # Check if number placement is valid
                 if not is_valid_placement(grid_b, self.t, loc_b, num_b):
-                    # Invalid number for this location - penalize both (not averaged)
+                    # Invalid number for this location - penalize both
                     penalty_loss[b] = wt * (loc_log_probs[b, loc_b] + num_log_probs[b, num_b - 1])
                     made_mistake[b] = True
                     continue
@@ -369,7 +385,7 @@ class StepwiseSudokuGPT(nn.Module):
                 if (current_grids[b] != 0).all():
                     completed[b] = True
         
-        # Compute final loss: average correct losses + penalty (not averaged)
+        # Compute final loss: average correct losses + penalty (not averaged) + dense filled cell penalty
         for b in range(B):
             # Average of correct losses (if any)
             if len(correct_losses[b]) > 0:
@@ -377,6 +393,8 @@ class StepwiseSudokuGPT(nn.Module):
             # Add penalty loss (not averaged, just added)
             if penalty_loss[b] is not None:
                 total_loss[b] = total_loss[b] + penalty_loss[b]
+            # Add dense penalty for all filled cells (always applied)
+            total_loss[b] = total_loss[b] + wt * total_filled_penalty[b]
         
         # Compute metrics
         validity_acc = (validity_logits.argmax(dim=-1) == is_valid_puzzle.long()).float().mean().item()
@@ -395,36 +413,239 @@ class StepwiseSudokuGPT(nn.Module):
 
 # ============== Training ==============
 
+def is_valid_complete_sudoku(grid, t):
+    """Check if grid is a valid complete sudoku."""
+    n = t * t
+    if (grid == 0).any():
+        return False
+    grid_2d = grid.reshape(n, n)
+    # Check rows
+    for i in range(n):
+        if len(set(grid_2d[i])) != n:
+            return False
+    # Check columns
+    for j in range(n):
+        if len(set(grid_2d[:, j])) != n:
+            return False
+    # Check boxes
+    for bi in range(t):
+        for bj in range(t):
+            box = grid_2d[bi*t:(bi+1)*t, bj*t:(bj+1)*t].flatten()
+            if len(set(box)) != n:
+                return False
+    return True
+
+def generate_invalid_puzzle(t):
+    """Generate an invalid (unsolvable) puzzle by creating conflicts."""
+    n = t * t
+    total_cells = n * n
+    
+    # Start with a valid solved grid
+    solved = generate_solved_sudoku(t)
+    puzzle = solved.copy()
+    
+    # Create a conflict: put same number twice in a row/col/box
+    # Remove some cells first
+    positions = [(i, j) for i in range(n) for j in range(n)]
+    random.shuffle(positions)
+    num_empty = random.randint(n, total_cells // 2)
+    for i, j in positions[:num_empty]:
+        puzzle[i, j] = 0
+    
+    # Now create a conflict by placing a number that makes it unsolvable
+    # Find an empty cell and put a number that conflicts
+    empty_cells = [(i, j) for i in range(n) for j in range(n) if puzzle[i, j] == 0]
+    if len(empty_cells) >= 2:
+        # Pick two empty cells in same row and force them to need same number
+        row = random.randint(0, n-1)
+        empty_in_row = [j for j in range(n) if puzzle[row, j] == 0]
+        if len(empty_in_row) >= 2:
+            # Find a number not in the row
+            used = set(puzzle[row])
+            available = [x for x in range(1, n+1) if x not in used]
+            if len(available) >= 1 and len(empty_in_row) > len(available):
+                # More empty cells than available numbers = unsolvable
+                pass  # Already unsolvable
+            else:
+                # Force conflict: put same number requirement
+                j1, j2 = empty_in_row[0], empty_in_row[1]
+                # Fill the column and box of both to leave only one option
+                num = available[0] if available else 1
+                # Put num in the column of j1 (not in row 'row')
+                for i in range(n):
+                    if i != row and puzzle[i, j1] == 0:
+                        puzzle[i, j1] = num
+                        break
+    
+    return puzzle.flatten()
+
+def print_example(t, puzzles, filled_grids, model, phase, valid_mask):
+    """Print an example puzzle and model's prediction."""
+    n = t * t
+    
+    # Find first valid puzzle
+    for b in range(puzzles.size(0)):
+        if valid_mask[b]:
+            puzzle = puzzles[b].cpu().numpy().reshape(n, n)
+            filled = filled_grids[b].cpu().numpy().reshape(n, n)
+            
+            # Get model's predictions for this example
+            hidden = model.get_hidden(puzzles[b:b+1], phase)
+            loc_logits = model.location_heads[phase][0](hidden)
+            num_logits = model.number_heads[phase][0](hidden)
+            pred_loc = loc_logits.argmax(dim=-1).item()
+            pred_num = num_logits.argmax(dim=-1).item() + 1
+            
+            # Find actual empty cell location and correct number
+            empty_locs = np.where(puzzle.flatten() == 0)[0]
+            
+            print(f"\n  === Example (t={t}, {n}x{n} grid) ===")
+            print(f"  Input puzzle (0=empty):")
+            for row in puzzle:
+                print(f"    {row}")
+            
+            # Show location probabilities
+            loc_probs = torch.softmax(loc_logits, dim=-1)[0].cpu().numpy()
+            
+            print(f"\n  Empty cell(s) at: {empty_locs.tolist()}")
+            print(f"  Prob of empty cell: {loc_probs[empty_locs[0]]:.4f}")
+            print(f"  Model predicts: loc={pred_loc}, num={pred_num}")
+            top_locs = np.argsort(loc_probs)[-5:][::-1]
+            print(f"  Top 5 location probs: {[(int(l), f'{loc_probs[l]:.3f}') for l in top_locs]}")
+            
+            # Show number probabilities
+            num_probs = torch.softmax(num_logits, dim=-1)[0].cpu().numpy()
+            print(f"  Number probs (1-{n}): {[f'{p:.3f}' for p in num_probs]}")
+            
+            print(f"\n  Filled result:")
+            for row in filled:
+                print(f"    {row}")
+            print()
+            break
+
 @torch.no_grad()
 def evaluate(model, t, phase, eval_batch_size=100, wt=1.0):
+    """
+    Evaluate solve accuracy:
+    - For valid puzzles: did model complete it to a valid sudoku?
+    - For invalid puzzles: did model correctly predict No?
+    """
     model.eval()
-    puzzles = generate_batch(t, eval_batch_size, max_empty=phase)
-    loss, metrics = model.forward_rl(puzzles, phase, wt)
+    n = t * t
+    num_cells = n * n
+    
+    # Generate mostly valid puzzles, some invalid
+    num_invalid = max(1, eval_batch_size // 10)  # 10% invalid
+    num_valid = eval_batch_size - num_invalid
+    
+    valid_puzzles, _ = generate_batch(t, num_valid, max_empty=phase)
+    invalid_puzzles = torch.stack([
+        torch.tensor(generate_invalid_puzzle(t), dtype=torch.long, device=device)
+        for _ in range(num_invalid)
+    ])
+    
+    all_puzzles = torch.cat([valid_puzzles, invalid_puzzles], dim=0)
+    is_valid_puzzle = torch.cat([
+        torch.ones(num_valid, dtype=torch.bool, device=device),
+        torch.zeros(num_invalid, dtype=torch.bool, device=device)
+    ])
+    
+    # Get hidden state
+    hidden = model.get_hidden(all_puzzles, phase)
+    
+    # Validity prediction
+    validity_logits = model.validity_heads[phase](hidden)
+    pred_valid = validity_logits.argmax(dim=-1) == 1  # 1 = Yes
+    
+    # Track solve accuracy
+    correct = torch.zeros(eval_batch_size, dtype=torch.bool, device=device)
+    
+    # For invalid puzzles: correct if predicted No
+    invalid_mask = ~is_valid_puzzle
+    correct[invalid_mask] = ~pred_valid[invalid_mask]  # Correct if predicted No (0)
+    
+    # For valid puzzles: need to check if model solves correctly
+    valid_mask = is_valid_puzzle
+    current_grids = all_puzzles.clone()
+    
+    loc_heads = model.location_heads[phase]
+    num_heads = model.number_heads[phase]
+    max_steps = min(phase, len(loc_heads))
+    
+    solved_correctly = torch.zeros(eval_batch_size, dtype=torch.bool, device=device)
+    
+    for step in range(max_steps):
+        loc_logits = loc_heads[step](hidden)
+        pred_loc = loc_logits.argmax(dim=-1)
+        
+        num_logits = num_heads[step](hidden)
+        pred_num = num_logits.argmax(dim=-1) + 1  # 1-indexed
+        
+        for b in range(eval_batch_size):
+            if not valid_mask[b]:
+                continue
+            loc_b = pred_loc[b].item()
+            num_b = pred_num[b].item()
+            
+            # Only fill if cell is empty
+            if current_grids[b, loc_b] == 0:
+                current_grids[b, loc_b] = num_b
+    
+    # Check if valid puzzles are solved correctly
+    for b in range(eval_batch_size):
+        if valid_mask[b]:
+            grid_np = current_grids[b].cpu().numpy()
+            if is_valid_complete_sudoku(grid_np, t):
+                solved_correctly[b] = True
+    
+    correct[valid_mask] = solved_correctly[valid_mask]
+    
+    solve_accuracy = correct.float().mean().item()
+    valid_solve_acc = solved_correctly[valid_mask].float().mean().item() if valid_mask.any() else 0.0
+    invalid_reject_acc = correct[invalid_mask].float().mean().item() if invalid_mask.any() else 0.0
+    
+    # Print example for phase 1
+    if phase == 1:
+        print_example(t, all_puzzles, current_grids, model, phase, valid_mask)
+    
+    # Also compute loss for logging (only on valid puzzles)
+    valid_is_valid = torch.ones(num_valid, dtype=torch.bool, device=device)
+    loss, train_metrics = model.forward_rl(all_puzzles[:num_valid], phase, wt, valid_is_valid)
+    
+    metrics = {
+        'solve_accuracy': solve_accuracy,
+        'valid_solve_acc': valid_solve_acc,
+        'invalid_reject_acc': invalid_reject_acc,
+        **train_metrics
+    }
+    
     return loss.item(), metrics
 
 def train_phase(model, optimizer, t, phase, max_iterations, batch_size,
-                eval_interval=100, target_loss=0.5, remember_rate=0.2,
+                eval_interval=100, target_accuracy=0.9, remember_rate=0.2,
                 global_step=0, training_history=None, eval_batch_size=100, 
                 use_wandb=True, wt=1.0):
     model.train()
     
     iter_num = 0
     eval_loss = float('inf')
+    eval_solve_acc = 0.0  # Start at 0% solve accuracy
     train_losses = []
     
     pbar = tqdm(total=max_iterations, desc=f"Phase {phase}")
     
-    while eval_loss > target_loss and iter_num < max_iterations:
+    # Advance phase when solve accuracy exceeds target
+    while eval_solve_acc < target_accuracy and iter_num < max_iterations:
         # Multilevel training
         if remember_rate > random.random():
             current_cot = np.random.randint(1, phase + 1)
         else:
             current_cot = phase
         
-        puzzles = generate_batch(t, batch_size, max_empty=current_cot)
+        puzzles, is_valid = generate_batch(t, batch_size, max_empty=current_cot)
         
         optimizer.zero_grad()
-        loss, _ = model.forward_rl(puzzles, current_cot, wt)
+        loss, _ = model.forward_rl(puzzles, current_cot, wt, is_valid)
         loss.backward()
         optimizer.step()
         
@@ -434,6 +655,7 @@ def train_phase(model, optimizer, t, phase, max_iterations, batch_size,
         
         if (iter_num + 1) % eval_interval == 0:
             eval_loss, metrics = evaluate(model, t, phase, eval_batch_size, wt)
+            eval_solve_acc = metrics['solve_accuracy']
             
             avg_train_loss = sum(train_losses) / len(train_losses)
             train_losses = []
@@ -457,12 +679,12 @@ def train_phase(model, optimizer, t, phase, max_iterations, batch_size,
                 })
             
             print(f"  Phase {phase}, Iter {iter_num + 1}: Loss={eval_loss:.4f}, "
-                  f"ValidSteps={metrics['avg_valid_steps']:.2f}/{metrics['avg_total_steps']:.2f}, "
-                  f"Complete={metrics['completion_rate']:.2%}, Mistake={metrics['mistake_rate']:.2%}")
+                  f"SolveAcc={metrics['solve_accuracy']:.2%}, ValidSteps={metrics['avg_valid_steps']:.2f}, MistakeRate={metrics['mistake_rate']:.2%}, "
+                  f"InvalidReject={metrics['invalid_reject_acc']:.2%}")
             model.train()
             
-            if eval_loss <= target_loss:
-                print(f"  ✓ Target loss {target_loss} reached!")
+            if eval_solve_acc >= target_accuracy:
+                print(f"  ✓ Target accuracy {target_accuracy:.1%} reached!")
                 break
         
         iter_num += 1
@@ -470,8 +692,8 @@ def train_phase(model, optimizer, t, phase, max_iterations, batch_size,
     pbar.close()
     
     eval_loss, metrics = evaluate(model, t, phase, eval_batch_size, wt)
-    print(f"Phase {phase} Complete: Loss={eval_loss:.4f}, ValidSteps={metrics['avg_valid_steps']:.2f} "
-          f"(after {iter_num} iterations)\n")
+    print(f"Phase {phase} Complete: SolveAcc={metrics['solve_accuracy']:.2%}, "
+          f"ValidSolve={metrics['valid_solve_acc']:.2%} (after {iter_num} iterations)\n")
     
     return eval_loss, metrics, iter_num, global_step + iter_num
 
@@ -484,8 +706,9 @@ def plot_training_curves(training_history, args, save_path='training_curves.png'
     iterations = [h['iteration'] for h in training_history]
     train_losses = [h['train_loss'] for h in training_history]
     eval_losses = [h['eval_loss'] for h in training_history]
-    valid_steps = [h['avg_valid_steps'] for h in training_history]
-    completion_rates = [h['completion_rate'] for h in training_history]
+    solve_accs = [h['solve_accuracy'] for h in training_history]
+    valid_solve_accs = [h['valid_solve_acc'] for h in training_history]
+    invalid_reject_accs = [h['invalid_reject_acc'] for h in training_history]
     phases = [h['phase'] for h in training_history]
     
     fig, axes = plt.subplots(3, 1, figsize=(12, 10), sharex=True)
@@ -506,10 +729,12 @@ def plot_training_curves(training_history, args, save_path='training_curves.png'
         ax1.axvline(x=pc, color='gray', linestyle='--', alpha=0.5)
     
     ax2 = axes[1]
-    ax2.plot(iterations, valid_steps, 'g-', linewidth=1.5, label='Avg Valid Steps', alpha=0.8)
-    ax2.plot(iterations, completion_rates, 'm-', linewidth=1.5, label='Completion Rate', alpha=0.8)
-    ax2.set_ylabel('Steps / Rate', fontsize=12)
-    ax2.set_title('Valid Steps and Completion Rate', fontsize=14, fontweight='bold')
+    ax2.plot(iterations, solve_accs, 'g-', linewidth=1.5, label='Solve Accuracy', alpha=0.8)
+    ax2.plot(iterations, valid_solve_accs, 'b-', linewidth=1.5, label='Valid Solve Acc', alpha=0.8)
+    ax2.plot(iterations, invalid_reject_accs, 'r-', linewidth=1.5, label='Invalid Reject Acc', alpha=0.8)
+    ax2.set_ylabel('Accuracy', fontsize=12)
+    ax2.set_ylim(0, 1.05)
+    ax2.set_title('Solve Accuracy', fontsize=14, fontweight='bold')
     ax2.legend(loc='lower right')
     ax2.grid(True, alpha=0.3)
     for pc in phase_changes[1:]:
@@ -547,14 +772,14 @@ def main():
     parser.add_argument('--t', type=int, default=2, help='Sudoku parameter (grid is t² × t²)')
     parser.add_argument('--max_cot', type=int, default=8, help='Maximum CoT tokens (phases)')
     parser.add_argument('--n_layers', type=int, default=2, help='Number of transformer layers')
-    parser.add_argument('--n_heads', type=int, default=4, help='Number of attention heads')
-    parser.add_argument('--n_embd', type=int, default=128, help='Embedding dimension')
-    parser.add_argument('--batch_size', type=int, default=64, help='Batch size')
+    parser.add_argument('--n_heads', type=int, default=1, help='Number of attention heads')
+    parser.add_argument('--n_embd', type=int, default=64, help='Embedding dimension')
+    parser.add_argument('--batch_size', type=int, default=256, help='Batch size')
     parser.add_argument('--iterations_per_phase', type=int, default=5000, help='Max iterations per phase')
     parser.add_argument('--lr', type=float, default=1e-4, help='Learning rate')
     parser.add_argument('--eval_interval', type=int, default=200, help='Evaluation interval')
     parser.add_argument('--eval_batch_size', type=int, default=100, help='Evaluation batch size')
-    parser.add_argument('--target_loss', type=float, default=0.1, help='Target loss to advance phase')
+    parser.add_argument('--target_accuracy', type=float, default=0.9, help='Target solve accuracy to advance phase')
     parser.add_argument('--truncate_backprop', action='store_true', default=True, help='Truncate backprop')
     parser.add_argument('--backprop_steps', type=int, default=1, help='Backprop steps')
     parser.add_argument('--remember_rate', type=float, default=0.2, help='Rate to train on previous phases')
@@ -621,7 +846,7 @@ def main():
             max_iterations=args.iterations_per_phase,
             batch_size=args.batch_size,
             eval_interval=args.eval_interval,
-            target_loss=args.target_loss,
+            target_accuracy=args.target_accuracy,
             remember_rate=args.remember_rate,
             global_step=global_step,
             training_history=training_history,
@@ -638,8 +863,9 @@ def main():
     print(f"{'='*60}")
     total_iterations = 0
     for r in results:
-        print(f"Phase {r['phase']}: Loss={r['loss']:.4f}, ValidSteps={r['avg_valid_steps']:.2f}, "
-              f"Complete={r['completion_rate']:.2%}, Iters={r['iterations']}")
+        print(f"Phase {r['phase']}: SolveAcc={r['solve_accuracy']:.2%}, "
+              f"ValidSolve={r['valid_solve_acc']:.2%}, InvalidReject={r['invalid_reject_acc']:.2%}, "
+              f"Iters={r['iterations']}")
         total_iterations += r['iterations']
     print(f"{'='*60}")
     print(f"Total iterations: {total_iterations}")
