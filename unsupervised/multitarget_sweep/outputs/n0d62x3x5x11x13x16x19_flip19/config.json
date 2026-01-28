@@ -1,0 +1,42 @@
+{
+  "id": 2,
+  "n_bits": 20,
+  "k_phases": 10,
+  "n_layers": 1,
+  "n_heads": 4,
+  "n_embd": 64,
+  "batch_size": 128,
+  "iterations_per_phase": 20000,
+  "lr": 1e-05,
+  "eval_interval": 200,
+  "eval_batch_size": 10000,
+  "target_loss": 0.1,
+  "multilevel": true,
+  "separate_heads": true,
+  "truncate_backprop": true,
+  "backprop_steps": 1,
+  "random_subset": true,
+  "fourier_num": 1,
+  "seed": 54,
+  "remember_rate": 0.1,
+  "detect_threshold": 0.1,
+  "flipping_bits": "19",
+  "flipping_ratio": 0.5,
+  "fourier_expression": "-0.62x3x5x11x13x16x19",
+  "fourier_filename": "n0d62x3x5x11x13x16x19",
+  "fourier_subsets": [
+    [
+      3,
+      5,
+      11,
+      13,
+      16,
+      19
+    ]
+  ],
+  "fourier_coefficients": [
+    -0.620737971231395
+  ],
+  "assigned_gpu": 7,
+  "pid": 1364072
+}

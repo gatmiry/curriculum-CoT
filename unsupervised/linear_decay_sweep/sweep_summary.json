@@ -1,0 +1,40 @@
+{
+  "total_configs": 16,
+  "detect_threshold_values": [
+    0.025,
+    0.05,
+    0.075,
+    0.1,
+    0.125,
+    0.15,
+    0.175,
+    0.2,
+    0.225,
+    0.25,
+    0.275,
+    0.3,
+    0.325,
+    0.35,
+    0.375,
+    0.4
+  ],
+  "base_config": {
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 1,
+    "n_embd": 256,
+    "batch_size": 256,
+    "iterations_per_phase": 15000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "seed": 54,
+    "remember_rate": 0.2
+  }
+}

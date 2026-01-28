@@ -466,7 +466,7 @@ def main():
     parser.add_argument('--iterations_per_phase', type=int, default=15000, help='Training iterations per phase')
     parser.add_argument('--lr', type=float, default=1e-5, help='Learning rate')
     parser.add_argument('--eval_interval', type=int, default=200, help='Evaluation interval')
-    parser.add_argument('--target_loss', type=float, default=0.2, help='Target loss to stop each phase')
+    parser.add_argument('--target_loss', type=float, default=0.1, help='Target loss to stop each phase')
     parser.add_argument('--multilevel', action='store_true', default=True, help='Enable multilevel training (train on parity of 1 to phase bits)')
     parser.add_argument('--separate_heads', action='store_true', default=True, help='Use separate linear head for each number of CoT tokens')
     parser.add_argument('--truncate_backprop', action='store_true', default=True, help='Enable truncated backprop through only last r forward passes')

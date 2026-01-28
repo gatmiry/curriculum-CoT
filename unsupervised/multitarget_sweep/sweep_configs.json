@@ -1,0 +1,5922 @@
+[
+  {
+    "id": 1,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "0",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 2,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 3,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "10",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 4,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "5",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 5,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,3",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 6,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "10,13",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 7,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "17,18",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 8,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "11,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 9,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,4,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 10,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "2,6,16",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 11,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,9,14",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 12,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "6,8,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 13,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "4,5,11,19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 14,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "13,14,16,19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 15,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,4,6,11",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 16,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "6,7,12,14",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 17,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,3,4,7,18",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 18,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,6,7,8,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 19,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,4,6,10,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 20,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 1,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,13,14,15,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.62x3x5x11x13x16x19",
+    "fourier_filename": "n0d62x3x5x11x13x16x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.620737971231395
+    ]
+  },
+  {
+    "id": 21,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "0",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 22,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 23,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "10",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 24,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "5",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 25,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,3",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 26,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "10,13",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 27,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "17,18",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 28,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "11,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 29,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,4,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 30,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "2,6,16",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 31,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,9,14",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 32,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "6,8,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 33,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "4,5,11,19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 34,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "13,14,16,19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 35,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,4,6,11",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 36,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "6,7,12,14",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 37,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,3,4,7,18",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 38,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,6,7,8,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 39,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,4,6,10,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 40,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 2,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,13,14,15,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.53x3x5x11x13x16x19+0.71x0x4x5x6x9x13x14x15x19",
+    "fourier_filename": "n0d53x3x5x11x13x16x19_p0d71x0x4x5x6x9x13x14x15x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.5296919831748788,
+      0.7124343446091772
+    ]
+  },
+  {
+    "id": 41,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "0",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 42,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 43,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "10",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 44,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "5",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 45,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,3",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 46,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "10,13",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 47,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "17,18",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 48,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "11,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 49,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,4,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 50,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "2,6,16",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 51,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,9,14",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 52,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "6,8,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 53,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "4,5,11,19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 54,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "13,14,16,19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 55,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,4,6,11",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 56,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "6,7,12,14",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 57,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,3,4,7,18",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 58,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,6,7,8,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 59,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,4,6,10,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 60,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 3,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,13,14,15,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.23x3x5x11x13x16x19-0.23x0x4x5x6x9x13x14x15x19-0.59x0x5",
+    "fourier_filename": "p0d23x3x5x11x13x16x19_n0d23x0x4x5x6x9x13x14x15x19_n0d59x0x5",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ]
+    ],
+    "fourier_coefficients": [
+      0.22725528790627347,
+      -0.2299855280979901,
+      -0.5910420383306922
+    ]
+  },
+  {
+    "id": 61,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "0",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 62,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 63,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "10",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 64,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "5",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 65,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,3",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 66,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "10,13",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 67,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "17,18",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 68,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "11,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 69,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,4,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 70,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "2,6,16",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 71,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,9,14",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 72,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "6,8,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 73,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "4,5,11,19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 74,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "13,14,16,19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 75,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,4,6,11",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 76,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "6,7,12,14",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 77,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,3,4,7,18",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 78,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,6,7,8,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 79,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,4,6,10,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 80,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 4,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,13,14,15,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "0.26x3x5x11x13x16x19+0.64x0x4x5x6x9x13x14x15x19-0.37x0x5+0.77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_filename": "p0d26x3x5x11x13x16x19_p0d64x0x4x5x6x9x13x14x15x19_n0d37x0x5_p0d77x1x2x5x6x7x9x10x13x16x17",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ]
+    ],
+    "fourier_coefficients": [
+      0.25786286082068943,
+      0.6408918184375636,
+      -0.3651441387294547,
+      0.7718431806821782
+    ]
+  },
+  {
+    "id": 81,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "0",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 82,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 83,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "10",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 84,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "5",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 85,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,3",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 86,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "10,13",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 87,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "17,18",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 88,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "11,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 89,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,4,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 90,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "2,6,16",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 91,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,9,14",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 92,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "6,8,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 93,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "4,5,11,19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 94,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "13,14,16,19",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 95,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,4,6,11",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 96,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "6,7,12,14",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 97,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,3,4,7,18",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 98,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "1,6,7,8,9",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 99,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,4,6,10,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  },
+  {
+    "id": 100,
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 4,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-05,
+    "eval_interval": 200,
+    "eval_batch_size": 10000,
+    "target_loss": 0.1,
+    "multilevel": true,
+    "separate_heads": true,
+    "truncate_backprop": true,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "fourier_num": 5,
+    "seed": 54,
+    "remember_rate": 0.1,
+    "detect_threshold": 0.1,
+    "flipping_bits": "3,13,14,15,17",
+    "flipping_ratio": 0.5,
+    "fourier_expression": "-0.91x3x5x11x13x16x19-0.85x0x4x5x6x9x13x14x15x19+0.62x0x5+0.52x1x2x5x6x7x9x10x13x16x17+0.55x7x10x11x19",
+    "fourier_filename": "n0d91x3x5x11x13x16x19_n0d85x0x4x5x6x9x13x14x15x19_p0d62x0x5_p0d52x1x2x5x6x7x9x10x13x16x17_p0d55x7x10x11x19",
+    "fourier_subsets": [
+      [
+        3,
+        5,
+        11,
+        13,
+        16,
+        19
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        9,
+        13,
+        14,
+        15,
+        19
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        7,
+        9,
+        10,
+        13,
+        16,
+        17
+      ],
+      [
+        7,
+        10,
+        11,
+        19
+      ]
+    ],
+    "fourier_coefficients": [
+      -0.9057545223036909,
+      -0.8518885775828664,
+      0.6178531610908913,
+      0.5226938881861813,
+      0.5480448968013616
+    ]
+  }
+]
