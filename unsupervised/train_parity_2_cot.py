@@ -284,7 +284,8 @@ def evaluate(model, all_inputs, phase, num_cot_tokens, show_examples=0, eval_bat
         batch_inputs = modified_inputs[i:i+eval_batch_size]
         batch_targets = targets[i:i+eval_batch_size]
         
-        outputs, loss = model.generate(batch_inputs, num_cot_tokens=1, target=batch_targets)
+        # Use num_cot_tokens (phase) for evaluation
+        outputs, loss = model.generate(batch_inputs, num_cot_tokens=num_cot_tokens, target=batch_targets)
         all_outputs.append(outputs)
         total_loss += loss.item()
         num_batches += 1
@@ -434,8 +435,8 @@ def save_training_data(training_history, results, args, save_path='training_data
 def main():
     parser = argparse.ArgumentParser(description='Train parity function with curriculum CoT learning')
     parser.add_argument('--n_bits', type=int, default=20, help='Number of input bits')
-    parser.add_argument('--k_phases', type=int, default=10, help='Number of phases (max parity bits)')
-    parser.add_argument('--n_layers', type=int, default=1, help='Number of transformer layers')
+    parser.add_argument('--k_phases', type=int, default=6, help='Number of phases (max parity bits)')
+    parser.add_argument('--n_layers', type=int, default=2, help='Number of transformer layers')
     parser.add_argument('--n_heads', type=int, default=1, help='Number of attention heads')
     parser.add_argument('--n_embd', type=int, default=64, help='Embedding dimension')
     parser.add_argument('--batch_size', type=int, default=128, help='Batch size')
@@ -448,7 +449,7 @@ def main():
     parser.add_argument('--truncate_backprop', action='store_true', default=False, help='Enable truncated backprop through only last r forward passes')
     parser.add_argument('--backprop_steps', type=int, default=1, help='Number of last forward passes to backprop through (r)')
     parser.add_argument('--random_subset', action='store_true', default=True, help='Use random subset of bits for parity instead of first k bits')
-    parser.add_argument('--seed', type=int, default=55, help='Random seed') #54
+    parser.add_argument('--seed', type=int, default=3, help='Random seed') #54
     parser.add_argument('--remember_rate', type=float, default=0.0, help='Rate at which to remember the previous phases')
     parser.add_argument('--plots_dir', type=str, default='plots', help='Directory for saving plots')
     parser.add_argument('--plot_data_dir', type=str, default='plot_data', help='Directory for saving plot data')
@@ -552,12 +553,13 @@ def main():
         print(f"{'='*60}")
         
         # Train this phase until loss < target_loss
+        # num_cot_tokens = phase (CoT tokens scale with phase)
         loss, accuracy, iterations, global_step = train_phase(
             model=model,
             optimizer=optimizer,
             all_inputs=all_inputs,
             phase=phase,
-            num_cot_tokens=1,  # num_cot_tokens equals phase number
+            num_cot_tokens=phase,  # CoT tokens = phase number
             max_iterations=args.iterations_per_phase,
             batch_size=args.batch_size,
             n_bits=args.n_bits,

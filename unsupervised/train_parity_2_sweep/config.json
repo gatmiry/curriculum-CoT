@@ -1,0 +1,27 @@
+{
+  "experiment_name": "train_parity_2_sweep",
+  "description": "Parameter sweep over 20 seeds for train_parity_2.py with modified batch (irrelevant bits set to 1)",
+  "parameters": {
+    "n_bits": 20,
+    "k_phases": 10,
+    "n_layers": 1,
+    "n_heads": 1,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 15000,
+    "lr": 1e-5,
+    "eval_interval": 200,
+    "target_loss": 0.02,
+    "multilevel": false,
+    "separate_heads": true,
+    "truncate_backprop": false,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "remember_rate": 0.0
+  },
+  "sweep": {
+    "seeds": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+    "num_seeds": 20
+  }
+}
+
