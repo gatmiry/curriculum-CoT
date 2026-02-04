@@ -435,12 +435,12 @@ def save_training_data(training_history, results, args, save_path='training_data
 def main():
     parser = argparse.ArgumentParser(description='Train parity function with curriculum CoT learning')
     parser.add_argument('--n_bits', type=int, default=20, help='Number of input bits')
-    parser.add_argument('--k_phases', type=int, default=6, help='Number of phases (max parity bits)')
+    parser.add_argument('--k_phases', type=int, default=8, help='Number of phases (max parity bits)')
     parser.add_argument('--n_layers', type=int, default=2, help='Number of transformer layers')
     parser.add_argument('--n_heads', type=int, default=1, help='Number of attention heads')
     parser.add_argument('--n_embd', type=int, default=64, help='Embedding dimension')
     parser.add_argument('--batch_size', type=int, default=128, help='Batch size')
-    parser.add_argument('--iterations_per_phase', type=int, default=15000, help='Training iterations per phase')
+    parser.add_argument('--iterations_per_phase', type=int, default=20000, help='Training iterations per phase')
     parser.add_argument('--lr', type=float, default=1e-5, help='Learning rate')
     parser.add_argument('--eval_interval', type=int, default=200, help='Evaluation interval')
     parser.add_argument('--target_loss', type=float, default=0.02, help='Target loss to stop each phase')
@@ -449,7 +449,7 @@ def main():
     parser.add_argument('--truncate_backprop', action='store_true', default=False, help='Enable truncated backprop through only last r forward passes')
     parser.add_argument('--backprop_steps', type=int, default=1, help='Number of last forward passes to backprop through (r)')
     parser.add_argument('--random_subset', action='store_true', default=True, help='Use random subset of bits for parity instead of first k bits')
-    parser.add_argument('--seed', type=int, default=4, help='Random seed') #54
+    parser.add_argument('--seed', type=int, default=1, help='Random seed') #54
     parser.add_argument('--remember_rate', type=float, default=0.0, help='Rate at which to remember the previous phases')
     parser.add_argument('--plots_dir', type=str, default='plots', help='Directory for saving plots')
     parser.add_argument('--plot_data_dir', type=str, default='plot_data', help='Directory for saving plot data')

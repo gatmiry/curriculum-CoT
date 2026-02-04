@@ -1,0 +1,30 @@
+{
+  "experiment_name": "train_parity_2_cot_sweep_v2",
+  "description": "Parameter sweep over 20 seeds for train_parity_2_cot.py with updated config (k_phases=8, n_layers=2, iterations=20000)",
+  "script": "train_parity_2_cot.py",
+  "output_folder": "outputs2",
+  "parameters": {
+    "n_bits": 20,
+    "k_phases": 8,
+    "n_layers": 2,
+    "n_heads": 1,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-5,
+    "eval_interval": 200,
+    "target_loss": 0.02,
+    "multilevel": false,
+    "separate_heads": true,
+    "truncate_backprop": false,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "remember_rate": 0.0
+  },
+  "sweep": {
+    "seeds": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+    "num_seeds": 20,
+    "gpus_used": [0, 1, 2, 3, 4, 5, 6, 7],
+    "distribution": "seeds distributed across 8 GPUs in parallel"
+  }
+}

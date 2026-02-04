@@ -448,7 +448,7 @@ def main():
     parser.add_argument('--truncate_backprop', action='store_true', default=False, help='Enable truncated backprop through only last r forward passes')
     parser.add_argument('--backprop_steps', type=int, default=1, help='Number of last forward passes to backprop through (r)')
     parser.add_argument('--random_subset', action='store_true', default=True, help='Use random subset of bits for parity instead of first k bits')
-    parser.add_argument('--seed', type=int, default=5, help='Random seed') #54
+    parser.add_argument('--seed', type=int, default=1, help='Random seed') #54
     parser.add_argument('--remember_rate', type=float, default=0.0, help='Rate at which to remember the previous phases')
     parser.add_argument('--plots_dir', type=str, default='plots', help='Directory for saving plots')
     parser.add_argument('--plot_data_dir', type=str, default='plot_data', help='Directory for saving plot data')
