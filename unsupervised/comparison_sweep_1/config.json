@@ -1,0 +1,36 @@
+{
+  "description": "Comparison sweep between train_parity_2_cot.py (CoT) and train_parity_2.py (No CoT)",
+  "seeds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+  "shared_params": {
+    "n_bits": 20,
+    "k_phases": 8,
+    "n_layers": 1,
+    "n_heads": 1,
+    "n_embd": 64,
+    "batch_size": 128,
+    "iterations_per_phase": 20000,
+    "lr": 1e-5,
+    "target_loss": 0.005,
+    "multilevel": false,
+    "separate_heads": true,
+    "truncate_backprop": false,
+    "backprop_steps": 1,
+    "random_subset": true,
+    "remember_rate": 0.0
+  },
+  "cot_config": {
+    "script": "train_parity_2_cot.py",
+    "output_dir": "cot_outputs",
+    "description": "num_cot_tokens = phase"
+  },
+  "nocot_config": {
+    "script": "train_parity_2.py",
+    "output_dir": "nocot_outputs",
+    "description": "num_cot_tokens = 1"
+  },
+  "nocurriculum_config": {
+    "script": "train_parity_2.py",
+    "output_dir": "nocurriculum_outputs",
+    "description": "No curriculum - trains directly on n_bits, num_cot_tokens = 1"
+  }
+}
