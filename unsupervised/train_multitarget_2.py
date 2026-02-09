@@ -624,7 +624,7 @@ def main():
     parser.add_argument('--detect_threshold', type=float, default=0.0, help='Loss threshold used to compute r during evaluation')
     parser.add_argument('--plots_dir', type=str, default='plots', help='Directory for saving plots')
     parser.add_argument('--plot_data_dir', type=str, default='plot_data', help='Directory for saving plot data')
-    parser.add_argument('--flipping_bits', type=str, default='0,2', help='Comma-separated bit indices to flip for extra targets')
+    parser.add_argument('--flipping_bits', type=str, default='0', help='Comma-separated bit indices to flip for extra targets')
     parser.add_argument('--flipping_ratio', type=float, default=0.5, help='Relative probability of each flipped target vs original')
 
     args = parser.parse_args()
