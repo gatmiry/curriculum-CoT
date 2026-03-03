@@ -605,7 +605,7 @@ def main():
     parser.add_argument('--n_bits', type=int, default=20, help='Number of input bits')
     parser.add_argument('--k_phases', type=int, default=6, help='Number of phases (max parity bits)')
     parser.add_argument('--n_layers', type=int, default=1, help='Number of transformer layers')
-    parser.add_argument('--n_heads', type=int, default=2, help='Number of attention heads')
+    parser.add_argument('--n_heads', type=int, default=4, help='Number of attention heads')
     parser.add_argument('--n_embd', type=int, default=64, help='Embedding dimension')
     parser.add_argument('--batch_size', type=int, default=128, help='Batch size')
     parser.add_argument('--iterations_per_phase', type=int, default=25000, help='Training iterations per phase')
@@ -624,7 +624,7 @@ def main():
     parser.add_argument('--detect_threshold', type=float, default=0.0, help='Loss threshold used to compute r during evaluation')
     parser.add_argument('--plots_dir', type=str, default='plots', help='Directory for saving plots')
     parser.add_argument('--plot_data_dir', type=str, default='plot_data', help='Directory for saving plot data')
-    parser.add_argument('--flipping_bits', type=str, default='0', help='Comma-separated bit indices to flip for extra targets')
+    parser.add_argument('--flipping_bits', type=str, default='', help='Comma-separated bit indices to flip for extra targets')
     parser.add_argument('--flipping_ratio', type=float, default=0.5, help='Relative probability of each flipped target vs original')
 
     args = parser.parse_args()
